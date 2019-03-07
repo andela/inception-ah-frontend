@@ -1,0 +1,7 @@
+## Dependencies
+node_modules
+
+## Webpack Build
+dist
+
+.DS_Store
