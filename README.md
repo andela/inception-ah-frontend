@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/andela/inception-ah-frontend/tree/develop.svg?style=svg)](https://circleci.com/gh/andela/inception-ah-frontend/tree/develop)
+
 # Authors Haven - A Social platform for the creative at heart.
 
 ## Vision

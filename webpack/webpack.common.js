@@ -6,11 +6,11 @@ const { appDirectory, buildDirectory } = require("./filePaths");
 
 module.exports = {
   entry: {
-    bundle: `${appDirectory}/index.js`
+    bundle: `${appDirectory}/index.jsx`
   },
   output: {
     path: buildDirectory,
-    filename: "[name].bundle.js"
+    filename: "build.bundle.js"
   },
   module: {
     rules: [
@@ -23,7 +23,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.js$/,
+        test: /\.(jsx|js)$/,
         exclude: /node_modules/,
         use: [
           {
