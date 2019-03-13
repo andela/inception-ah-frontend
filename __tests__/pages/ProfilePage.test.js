@@ -1,8 +1,5 @@
 import React from "react";
 import ProfilePage from "../../src/pages/ProfilePage";
-import { Enzyme } from "../../setup.config";
-
-const { shallow } = Enzyme;
 
 describe("ProfilePage", () => {
   it("should contain h1 element", () => {

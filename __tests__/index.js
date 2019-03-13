@@ -1,5 +1,11 @@
-import "./HomePage.test";
-import "./SignUpPage.test";
-import "./Input.test";
-import "./SocialLinks.test";
-// import "./AuthWrapper.test";
+import "./pages/HomePage.test";
+import "./pages/ProfilePage.test";
+// import "./pages/SignInPage.test";
+// import "./components/auth/AuthWrapper.test";
+import "./components/SocialLinks.test";
+import "./components/BaseRoute.test";
+import "./components/common/Error.test";
+import "./components/common/Input.test";
+import "./utils/validation.test";
+// // import "./components/BaseRoute.test";
+// // import "./actions/auth/signup.test";

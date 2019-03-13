@@ -1,8 +1,4 @@
-import React from "react";
-import Input from "../src/components/common/Input";
-import { Enzyme } from "../setup.config";
-
-const { shallow } = Enzyme;
+import Input from "../../../src/components/common/Input";
 
 const setup = props => {
   const defaultProps = {
@@ -11,7 +7,8 @@ const setup = props => {
     name: "name",
     value: "value",
     className: "className",
-    handleChange: () => {}
+    errors: "errors",
+    handleChange: () => { }
   };
 
   const wrapper = shallow(<Input {...defaultProps} {...props} />);
@@ -22,8 +19,8 @@ const setup = props => {
 describe("Input Component", () => {
   const wrapper = setup();
 
-  it("should render 2 <div> elements", () => {
-    expect(wrapper.find("div").length).toEqual(2);
+  it("should render 3 <div> elements", () => {
+    expect(wrapper.find("div").length).toEqual(3);
   });
 
   it("should render 1 <input> element", () => {
@@ -55,6 +52,11 @@ describe("Input Component", () => {
     expect(className).toEqual("className");
   });
 
+  it("should allow us to set errors props", () => {
+    const { errors } = wrapper.props().children[0].props.children[0].props;
+    expect(errors).toEqual("errors");
+  });
+
   it("should allow us to set handleChange props", () => {
     const handleChange = jest.fn();
     const changedWrapper = setup({ handleChange });
@@ -62,19 +64,4 @@ describe("Input Component", () => {
     input.simulate("change", { target: { value: "Test" } });
     expect(handleChange).toHaveBeenCalledTimes(1);
   });
-
-  // it("should set a default type props if not specified", () => {
-  //   // eslint-disable-next-line no-const-assign
-  //   // eslint-disable-next-line no-shadow
-  //   let wrapper = shallow(<Input placeholder="" />);
-  //   console.log("wrapper", wrapper.props().children[0].props.children[0].props);
-  //   // const { type } = wrapper.props().children[0].props.children[0].props;
-  //   // expect(type).toEqual("text");
-  // });
-
-  // it("should set a default placeholder props if not specified", () => {
-  //   console.log("wrapper", wrapper.props().children[0].props.children[0].props);
-  //   const { placeholder } = wrapper.props().children[0].props.children[0].props;
-  //   expect(placeholder).toEqual("firstName");
-  // });
 });
