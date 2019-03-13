@@ -15,14 +15,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.s?[ac]ss$/,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     { loader: "css-loader", options: { url: false, sourceMap: true } },
-      //     { loader: "sass-loader", options: { sourceMap: true } }
-      //   ]
-      // },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,

@@ -14,6 +14,7 @@ module.exports = {
     redux: "<rootDir>/src/redux",
     "^<Components>(.*)$": "<rootDir>/src/components$1",
     "^<Assets>(.*)": "<rootDir>/src/assets$1",
+    "<Common>": "<rootDir>/src/components/common/Input",
   },
   transform: {
     "^.+\\.(js|jsx)$": "babel-jest",

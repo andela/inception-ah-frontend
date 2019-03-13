@@ -5,7 +5,6 @@ import Input from "<Components>/common/Input";
 import "../assets/styles/SignUpPage.scss";
 import logo from "../assets/images/Logo1.png";
 import SocialLink from "../components/SocialLinks";
-// import NavigationBar from "../components/NavigationBar";
 
 const SignUpPage = ({
   firstName,
@@ -72,9 +71,9 @@ const SignUpPage = ({
             />
           </div>
           <p className="sign-up-page__signup-link">
-            Already have an account? <Link to="#">Log In</Link>
+            Already have an account? <Link to="/signin">Log In</Link>
           </p>
-          <SocialLink />
+          <SocialLink message={"Sign up with"} />
         </form>
       </div>
     </div>
@@ -87,7 +86,8 @@ SignUpPage.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  errors: PropTypes.object
 };
 
 export default SignUpPage;
