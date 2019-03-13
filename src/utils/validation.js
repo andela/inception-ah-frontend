@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import { emailRegex, passwordRegex } from "./regex";
 
 export default (state, e) => {
@@ -33,6 +32,8 @@ export default (state, e) => {
 export const isNotValid = errors => {
   let valid = true;
 
-  Object.values(errors).forEach(value => value.length > 0 && (valid = false));
+  Object.values(errors).forEach(value => {
+    value.length > 0 && (valid = false);
+  });
   return valid;
 };

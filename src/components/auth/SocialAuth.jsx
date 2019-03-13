@@ -1,52 +1,36 @@
-import { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from "react";
+import queryString from "querystring";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import { withRouter } from "react-router-dom";
-import socialAuthLogin from "../../actions/auth/socialAuth";
-import getBaseUrl, { checkAuthType } from "../../utils/getUrls";
+import { setToken } from "../../utils/authenticate";
 
-export class SocialRedirect extends Component {
+class SocialRedirect extends Component {
   componentDidMount() {
     const {
-      location: { search, pathname }
+      location: { search }
     } = this.props;
-    const socialToken = `${search}`;
-
-    if (checkAuthType(pathname) === "facebook") {
-      this.props
-        .socialAuthLogin(getBaseUrl("facebook"), socialToken)
-        .then(() => {
-          this.props.history.push("/profile");
-        })
-        .catch(error => {
-          toast.error(error);
-        });
+    const parsed = queryString.parse(search);
+    const token = parsed["?token"];
+    if (token) {
+      setToken(token).then(() => {
+        this.props.history.push("/profile");
+        toast.success("You are successfully logged in");
+      });
     }
-    if (checkAuthType(pathname) === "google") {
-      this.props
-        .socialAuthLogin(getBaseUrl("google"), socialToken)
-        .then(() => {
-          this.props.history.push("/profile");
-        })
-        .catch(error => {
-          toast.error(error);
-        });
+    if (parsed.error) {
+      this.props.history.push("/login");
+      toast.error(parsed.error);
     }
   }
 
   render() {
-    return null;
+    return <h1>Verifying your account .... </h1>;
   }
 }
 
 SocialRedirect.propTypes = {
   location: PropTypes.object.isRequired,
-  socialAuthLogin: PropTypes.func.isRequired,
   history: PropTypes.object
 };
 
-export default connect(
-  null,
-  { socialAuthLogin }
-)(withRouter(SocialRedirect));
+export default SocialRedirect;
