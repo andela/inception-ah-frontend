@@ -4,7 +4,7 @@ class Homepage extends Component {
   render() {
     return (
       <Fragment>
-        <h1 className="app">Welcome to Inception General Authors Haven</h1>;
+        <h1 className="app">Welcome to Inception General Authors Haven</h1>
       </Fragment>
     );
   }

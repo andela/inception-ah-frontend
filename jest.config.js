@@ -10,6 +10,11 @@ module.exports = {
     pages: "<rootDir>/src/pages",
     src: "<rootDir>/src",
     redux: "<rootDir>/src/redux",
+    "^<Components>$": "<rootDir>/src/components/common/Input",
   },
-
+  transform: {
+    "^.+\\.js$": "babel-jest",
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+      "jest-transform-stub",
+  },
 };

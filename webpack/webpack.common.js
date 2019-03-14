@@ -14,14 +14,14 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.s?[ac]ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { url: false, sourceMap: true } },
-          { loader: "sass-loader", options: { sourceMap: true } }
-        ]
-      },
+      // {
+      //   test: /\.s?[ac]ss$/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     { loader: "css-loader", options: { url: false, sourceMap: true } },
+      //     { loader: "sass-loader", options: { sourceMap: true } }
+      //   ]
+      // },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
@@ -39,13 +39,27 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(css|scss|sass)$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
       }
     ]
   },
   resolve: {
     alias: {
       "<Pages>": path.resolve(__dirname, "../src/pages"),
-      "<Components>": path.resolve(__dirname, "../src/components")
+      "<Components>": path.resolve(__dirname, "../src/components"),
+      "<Common>": path.resolve(__dirname, "../src/components/common"),
+      "<Auth>": path.resolve(__dirname, "../src/components/Auth")
     },
     extensions: [" ", ".js", ".jsx"]
   },

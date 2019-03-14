@@ -1,1 +1,2 @@
-import "./HomePage.test";
+// import "./HomePage.test";
+import "./SignUpPage.test";
