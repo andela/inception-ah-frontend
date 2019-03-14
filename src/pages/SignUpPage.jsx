@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Input from "<Components>/common/Input";
-import "../assets/styles/SignUpPage.scss";
-import logo from "../assets/images/Logo1.png";
-import facebook from "../assets/images/facebook.png";
-import google from "../assets/images/search.png";
+import "<Assets>/styles/SignUpPage.scss";
+import logo from "<Assets>/images/Logo1.png";
+import facebook from "<Assets>/images/facebook.png";
+import google from "<Assets>/images/search.png";
+// const logo = ''; const facebook = ''; const google ='';
 
 const SignUpPage = ({
   firstName,

@@ -6,15 +6,15 @@ module.exports = {
   rootDir: projectDir,
   moduleNameMapper: {
     "@/(.*)$": path.join(projectDir, "src/$1"),
-    components: "<rootDir>/components",
+    components: "<rootDir>/src/components",
     pages: "<rootDir>/src/pages",
     src: "<rootDir>/src",
     redux: "<rootDir>/src/redux",
-    "^<Components>$": "<rootDir>/src/components/common/Input",
+    "^<Components>(.*)$": "<rootDir>/src/components$1",
+    "^<Assets>(.*)": "<rootDir>/src/assets$1",
   },
   transform: {
-    "^.+\\.js$": "babel-jest",
-    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
-      "jest-transform-stub",
+    "^.+\\.(js|jsx)$": "babel-jest",
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
   },
 };

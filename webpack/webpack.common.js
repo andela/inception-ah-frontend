@@ -59,7 +59,8 @@ module.exports = {
       "<Pages>": path.resolve(__dirname, "../src/pages"),
       "<Components>": path.resolve(__dirname, "../src/components"),
       "<Common>": path.resolve(__dirname, "../src/components/common"),
-      "<Auth>": path.resolve(__dirname, "../src/components/Auth")
+      "<Auth>": path.resolve(__dirname, "../src/components/Auth"),
+      "<Assets>": path.resolve(__dirname, "../src/asserts")
     },
     extensions: [" ", ".js", ".jsx"]
   },
