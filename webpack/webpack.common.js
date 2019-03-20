@@ -10,7 +10,8 @@ module.exports = {
   },
   output: {
     path: buildDirectory,
-    filename: "build.bundle.js"
+    filename: "build.bundle.js",
+    publicPath: "/"
   },
   module: {
     rules: [
