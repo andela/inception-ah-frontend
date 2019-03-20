@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import socialAuthLogin from "../../actions/auth/socialAuth";
 import getBaseUrl, { checkAuthType } from "../../utils/getUrls";
 
-class SocialRedirect extends Component {
+export class SocialRedirect extends Component {
   componentDidMount() {
     const {
       location: { search, pathname }

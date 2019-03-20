@@ -1,7 +1,12 @@
 import React from "react";
+<<<<<<< HEAD:__tests__/pages/SignUpPage.test.js
 <<<<<<< HEAD:__tests__/SignUpPage.test.js
 import SignUpPage from "@/pages/SignUpPage";
 import { Enzyme } from "./setup.config";
+=======
+import SignUpPage from "../src/pages/SignUpPage";
+import { Enzyme } from "../setup.config";
+>>>>>>> feat(authsignup):  user should be able to signup:__tests__/SignUpPage.test.js
 
 const { shallow } = Enzyme;
 
@@ -93,16 +98,23 @@ describe("SignUpPage", () => {
         />
       );
       expect(wrapper).toMatchSnapshot();
+<<<<<<< HEAD:__tests__/pages/SignUpPage.test.js
       wrapper.find("[name=\"firstName\"]").simulate("change", {
         target: { value: "john" }
       });
       wrapper.find("[name=\"lastName\"]").simulate("change", {
+=======
+      wrapper.find('[name="firstName"]').simulate("change", {
+        target: { value: "john" }
+      });
+      wrapper.find('[name="lastName"]').simulate("change", {
+>>>>>>> feat(authsignup):  user should be able to signup:__tests__/SignUpPage.test.js
         target: { value: "doe" }
       });
-      wrapper.find("[name=\"email\"]").simulate("change", {
+      wrapper.find('[name="email"]').simulate("change", {
         target: { value: "john@gmail.com" }
       });
-      wrapper.find("[name=\"password\"]").simulate("change", {
+      wrapper.find('[name="password"]').simulate("change", {
         target: { value: "Password" }
       });
       wrapper.find("form").simulate("submit");

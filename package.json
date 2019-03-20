@@ -7,7 +7,8 @@
     "test": "jest index.js",
     "build": "webpack --env.mode production",
     "start": "webpack-dev-server  --env.mode development --open",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "pretest": "rm -rf __tests__/__snapshots__"
   },
   "repository": {
     "type": "git",
@@ -60,16 +61,18 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.2.0",
+    "express": "^4.16.4",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-<<<<<<< HEAD
-=======
     "react-toastify": "^4.5.2",
     "redux": "^4.0.1",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
->>>>>>> feat(authsignup):  user should be able to signup
     "semantic-ui-css": "^2.4.1",
     "url-loader": "^1.1.2"
   }

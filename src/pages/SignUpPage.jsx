@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import Input from "<Components>/common/Input";
 import "../assets/styles/SignUpPage.scss";
 import logo from "../assets/images/Logo1.png";
-import facebook from "../assets/images/facebook.png";
-import google from "../assets/images/search.png";
+import SocialLink from "../components/SocialLinks";
+// import NavigationBar from "../components/NavigationBar";
 
 const SignUpPage = ({
   firstName,
@@ -14,6 +14,7 @@ const SignUpPage = ({
   password,
   handleChange,
   handleSubmit,
+  errors
 }) => {
   return (
     <div className="sign-up-page">
@@ -25,25 +26,27 @@ const SignUpPage = ({
       </div>
       <div className="sign-up-page__form-container">
         <p className="sign-up-page__heading">
-            Sign up for free to start sharing your inspiration and story on
-            authors haven
+          Sign up for free to start sharing your inspiration and story on
+          authors haven
         </p>
         <form className="ui form sign-up-page__form" onSubmit={handleSubmit}>
           <Input
             icon="user icon"
             type="text"
-            name="firstname"
+            name="firstName"
             value={firstName}
-            placeholder="Firstname"
+            placeholder="firstName"
             handleChange={handleChange}
+            errors={errors.firstName}
           />
           <Input
             icon="user icon"
             type="text"
-            name="lastname"
+            name="lastName"
             value={lastName}
-            placeholder="Lastname"
+            placeholder="lastName"
             handleChange={handleChange}
+            errors={errors.lastName}
           />
           <Input
             icon="envelope icon"
@@ -71,16 +74,7 @@ const SignUpPage = ({
           <p className="sign-up-page__signup-link">
             Already have an account? <Link to="#">Log In</Link>
           </p>
-          <div className="sign-up-page__social-links">
-            <span>Sign Up with</span>
-            <Link to="#">
-              <img src={google} />
-            </Link>
-            <Link to="#">
-              {" "}
-              <img src={facebook} />
-            </Link>
-          </div>
+          <SocialLink />
         </form>
       </div>
     </div>
@@ -93,7 +87,7 @@ SignUpPage.propTypes = {
   email: PropTypes.string,
   password: PropTypes.string,
   handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export default SignUpPage;

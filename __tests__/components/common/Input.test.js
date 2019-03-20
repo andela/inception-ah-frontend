@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../../../src/components/common/Input";
-import { Enzyme } from "../../../setup.config";
+import Input from "../src/components/common/Input";
+import { Enzyme } from "../setup.config";
 
 const { shallow } = Enzyme;
 
