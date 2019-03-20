@@ -1,8 +1,11 @@
 ## Dependencies
-node_modules
+/node_modules
 
 ## Webpack Build
 dist
+
+## Test coverage
+coverage
 
 .DS_Store
 .npmrc
