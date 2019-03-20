@@ -64,6 +64,12 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
+<<<<<<< HEAD
+=======
+    "react-toastify": "^4.5.2",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+>>>>>>> feat(authsignup):  user should be able to signup
     "semantic-ui-css": "^2.4.1",
     "url-loader": "^1.1.2"
   }

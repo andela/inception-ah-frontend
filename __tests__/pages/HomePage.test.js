@@ -1,6 +1,6 @@
 import React from "react";
-import Homepage from "@/pages/Homepage";
-import { Enzyme } from "./setup.config";
+import Homepage from "../../src/pages/Homepage";
+import { Enzyme } from "../../setup.config";
 
 const { shallow } = Enzyme;
 

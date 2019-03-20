@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Input from "<Components>/common/Input";
-import "<Assets>/styles/SignUpPage.scss";
-import logo from "<Assets>/images/Logo1.png";
-import facebook from "<Assets>/images/facebook.png";
-import google from "<Assets>/images/search.png";
-// const logo = ''; const facebook = ''; const google ='';
+import Input from "../components/common/Input";
+import "../assets/styles/SignUpPage.scss";
+import SocialLink from "../components/SocialLinks";
+import NavigationBar from "../components/NavigationBar";
 
 const SignUpPage = ({
   firstName,
@@ -33,18 +31,20 @@ const SignUpPage = ({
           <Input
             icon="user icon"
             type="text"
-            name="firstname"
+            name="firstName"
             value={firstName}
-            placeholder="Firstname"
+            placeholder="firstName"
             handleChange={handleChange}
+            errors={errors.firstName}
           />
           <Input
             icon="user icon"
             type="text"
-            name="lastname"
+            name="lastName"
             value={lastName}
-            placeholder="Lastname"
+            placeholder="lastName"
             handleChange={handleChange}
+            errors={errors.lastName}
           />
           <Input
             icon="envelope icon"
