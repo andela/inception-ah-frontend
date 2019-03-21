@@ -106,6 +106,7 @@ class ProfileInfo extends Component {
   followUser = () => {
     this.props.followUser(this.props.match.params.userId);
   };
+  
   render() {
     if (this.state.isLoading || !this.state.firstName) {
       return <Loader />;

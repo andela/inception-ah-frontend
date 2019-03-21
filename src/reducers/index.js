@@ -6,5 +6,5 @@ import commentReducer from "./comments";
 export default combineReducers({
   profile: profileReducer,
   article: articleReducer,
-  comment: commentReducer,
+  comment: commentReducer
 });

@@ -1,10 +1,9 @@
 import Axios from "axios";
 import { toast } from "react-toastify";
 import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
-
-import { API_URL } from "../../constants/constants";
+import jwtDecode from "jwt-decode";
 // import jwtDecode from "jwt-decode";
-//  import { API_URL_DEV } from "<constants>/constants";
+ import { API_URL } from "<constants>/constants";
 
 const signInUser = (user, history, from) => dispatch => {
   return Axios.post(`${API_URL}/auth/signin`, { ...user })
