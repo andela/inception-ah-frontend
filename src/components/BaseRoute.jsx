@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import Routes from "<components>/routes";
 import PrivateRoute from "<components>/PrivateRoute";
 
@@ -18,7 +17,6 @@ const BaseRoute = () => (
           component={component}
         />
       ))}
-      <ToastContainer autoClose={2500} />
     </Switch>
   </Fragment>
 );

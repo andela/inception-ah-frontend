@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { Menu, Image, Dropdown } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import authenticate from "<utils>/authenticate";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
-import lateefat from "<images>/lateefat.jpg";
+import user from "<images>/user.png";
 import "<styles>/Notification.scss";
 import "<styles>/custom.scss";
 
 class ProfileDropdown extends Component {
-  trigger = (
+  trigger = imageURL => (
     <span>
-      <Image avatar src={lateefat} />
+      <Image avatar src={imageURL || user} />
     </span>
   );
 
@@ -69,7 +70,7 @@ class ProfileDropdown extends Component {
     return (
       <Menu.Item position="left">
         <Dropdown
-          trigger={this.trigger}
+          trigger={this.trigger(this.props.imageURL)}
           options={this.options}
           pointing="top right"
           icon={null}
@@ -79,8 +80,16 @@ class ProfileDropdown extends Component {
   }
 }
 
+const mapStateToProps = store => ({
+  imageURL: store.profile.profileData.imageURL
+});
+
 ProfileDropdown.propTypes = {
+  imageURL: PropTypes.string,
   history: PropTypes.object
 };
 
-export default ProfileDropdown;
+export default connect(
+  mapStateToProps,
+  null
+)(ProfileDropdown);
