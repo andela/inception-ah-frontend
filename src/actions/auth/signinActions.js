@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { toast } from "react-toastify";
-import { API_URL } from "../../constants/constants";
-import { SET_CURRENT_USER, SET_ERROR } from "./types/types";
+import { API_URL } from "<constants>/constants";
+import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
 
 const signInUser = (user, history) => dispatch => {
   return Axios.post(`${API_URL}/auth/signin`, { ...user })

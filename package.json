@@ -8,11 +8,10 @@
   },
   "scripts": {
     "test": "jest index.js --coverage",
-    "build": "webpack --env.mode production",
+    "build": "rm -rf dist && webpack --env.mode production",
     "start": "webpack-dev-server  --env.mode development --open",
     "lint": "eslint src/**/*.js",
-    "pretest": "rm -rf __tests__/__snapshots__",
-    "heroku-postbuild": "npm run build"
+    "pretest": "rm -rf __tests__/__snapshots__"
   },
   "repository": {
     "type": "git",

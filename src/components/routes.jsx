@@ -1,10 +1,10 @@
-import HomePage from "../pages/Homepage";
-import SignInWrapper from "./auth/signInWrapper";
-import SignUpWrapper from "./auth/SignUp";
-import ProfilePage from "../pages/Profile";
-import SocialRedirect from "./auth/SocialAuth";
+import HomePage from "<pages>/Homepage";
+import SignInWrapper from "<auth>/SignIn";
+import SignUpWrapper from "<auth>/SignUp";
+import ProfilePage from "<pages>/Profile";
+import SocialRedirect from "<auth>/SocialAuth";
 
-export default {
+const Routes = {
   default: [
     {
       exact: true,
@@ -31,3 +31,4 @@ export default {
     }
   ]
 };
+export default Routes;

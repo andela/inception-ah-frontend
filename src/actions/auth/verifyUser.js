@@ -1,6 +1,6 @@
-import request from "../../api/request";
-import { SET_CURRENT_USER, SET_ERROR } from "./types/types";
-import { API_URL } from "../../constants/constants";
+import request from "<Api>/request";
+import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
+import { API_URL } from "<constants>/constants";
 
 export default token => dispatch => {
   return request(`${API_URL}/auth/verification/${token}`, "GET")

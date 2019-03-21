@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Input from "<Common>/Input";
-import "../assets/styles/SignInPage.scss";
-import logo from "../assets/images/Logo1.png";
-import SocialLink from "../components/SocialLinks";
+import Input from "<common>/Input";
+import "<styles>/SignInPage.scss";
+import logo from "<images>/Logo1.png";
+import SocialLink from "<components>/SocialLinks";
 
 const SignInPage = ({ email, password, handleChange, handleSubmit }) => {
   return (

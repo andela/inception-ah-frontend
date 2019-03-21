@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: buildDirectory,
     filename: "build.bundle.js",
-    publicPath: "/"
+    publicPath: "./"
   },
   module: {
     rules: [
@@ -48,13 +48,20 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: ["node_modules"],
     alias: {
-      "<Pages>": path.resolve(__dirname, "../src/pages"),
-      "<Components>": path.resolve(__dirname, "../src/components"),
-      "<Common>": path.resolve(__dirname, "../src/components/common"),
-      "<Auth>": path.resolve(__dirname, "../src/components/Auth")
+      "<components>": path.resolve(__dirname, "../src/components"),
+      "<auth>": path.resolve(__dirname, "../src/components/authentication"),
+      "<common>": path.resolve(__dirname, "../src/components/common"),
+      "<constants>": path.resolve(__dirname, "../src/constants"),
+      "<pages>": path.resolve(__dirname, "../src/pages"),
+      "<utils>": path.resolve(__dirname, "../src/utils"),
+      "<images>": path.resolve(__dirname, "../src/assets/images"),
+      "<styles>": path.resolve(__dirname, "../src/assets/styles"),
+      "<authActions>": path.resolve(__dirname, "../src/actions/auth"),
+      "<api>": path.resolve(__dirname, "../src/api")
     },
-    extensions: [" ", ".js", ".jsx"]
+    extensions: [".jsx", ".js", ".json"]
   },
   plugins: [
     new cleanWebpackPlugin(),
