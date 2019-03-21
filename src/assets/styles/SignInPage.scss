@@ -1,0 +1,109 @@
+@import "color";
+
+.sign-in-page {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.66), rgba(0, 0, 0, 0.66)),
+    url("../images/login.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .sign-in-page__form {
+    margin: auto;
+    width: 100%;
+    min-height: 404px;
+    border: 1px solid $text;
+    padding: 40px 30px;
+    border-radius: 5px;
+
+    p {
+      color: $text;
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .sign-in-page__signup-link {
+      display: flex;
+      justify-content: flex-start;
+      font-size: 0.98rem;
+      a {
+        margin-left: 0.4rem;
+        color: $text;
+        &:hover {
+          color: $background;
+        }
+      }
+    }
+  }
+}
+
+.sign-in-page__btn {
+  background-color: $background !important;
+  color: $text !important;
+  width: 100% !important;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 0.285714rem;
+  cursor: pointer;
+}
+
+.sign-in-page__logo__img {
+  width: 170px;
+  height: auto;
+  margin: auto;
+}
+
+.sign-in-page__form-container {
+  width: 360px;
+}
+
+.sign-in-page__logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+
+  p {
+    color: $text;
+    padding: 10px;
+  }
+}
+
+/* For mobile devices */
+@media only screen and (max-width: 480px) {
+  .sign-in-page {
+    .sign-in-page__form {
+      border: none;
+
+      .sign-in-page__signup-link {
+        font-size: 0.8rem;
+      }
+    }
+
+    .sign-in-page__form-container {
+      padding-top: 80px;
+    }
+  }
+
+  .sign-in-page__logo__img {
+    width: 120px;
+    height: auto;
+    margin: auto;
+  }
+
+  .sign-in-page__logo {
+    p {
+      font-size: 0.85rem;
+    }
+  }
+}

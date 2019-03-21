@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Input = (props) => {
-  const {
-    type, name, value, className, placeholder, handleChange, icon,
-  } = props;
+const Input = props => {
+  const { type, name, value, className, placeholder, handleChange, icon } = props;
   return (
     <div className="field">
       <div className="ui left icon input">
@@ -15,6 +13,7 @@ const Input = (props) => {
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
+          required
         />
         <i className={icon} />
       </div>

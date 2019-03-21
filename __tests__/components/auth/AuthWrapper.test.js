@@ -1,11 +1,6 @@
 import React from "react";
-<<<<<<< HEAD:__tests__/components/auth/AuthWrapper.test.js
 import { AuthWrapper } from "../../src/components/auth/AuthWrapper";
 import { Enzyme } from "../../setup.config";
-=======
-import { AuthWrapper } from "../src/components/auth/AuthWrapper";
-import { Enzyme } from "../setup.config";
->>>>>>> feat(authsignup):  user should be able to signup:__tests__/AuthWrapper.test.js
 
 const { mount } = Enzyme;
 
