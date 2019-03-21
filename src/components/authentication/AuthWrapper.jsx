@@ -6,13 +6,15 @@ export const AuthWrapper = AuthComponent => {
     state = {
       email: "",
       password: "",
+      confirmPassword: "",
       firstName: "",
       lastName: "",
       errors: {
         email: "",
         password: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
+        confirmPassword: ""
       }
     };
 
