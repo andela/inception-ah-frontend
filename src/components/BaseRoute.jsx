@@ -1,16 +1,16 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import routes from "./routes";
-import PrivateRoute from "./PrivateRoute";
+import Routes from "<Components>/Routes";
+import PrivateRoute from "<Components>/PrivateRoute";
 
 const BaseRoute = () => (
   <Fragment>
     <Switch>
-      {routes.default.map(({ exact, path, component }, index) => (
+      {Routes.default.map(({ exact, path, component }, index) => (
         <Route key={index} exact={exact} path={path} component={component} />
       ))}
-      {routes.secured.map(({ exact, path, component }, index) => (
+      {Routes.secured.map(({ exact, path, component }, index) => (
         <PrivateRoute
           key={index}
           exact={exact}

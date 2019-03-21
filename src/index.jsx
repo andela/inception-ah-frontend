@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.scss";
 import "react-toastify/dist/ReactToastify.css";
-import BaseRoute from "<Components>/BaseRoute";
+import BaseRoute from "./components/BaseRoute";
 import "semantic-ui-css/semantic.min.css";
 import store from "./store";
 

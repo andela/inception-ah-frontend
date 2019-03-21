@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GOOGLE_URL, FACEBOOK_URL } from "../constants/constants";
-import facebook from "../assets/images/facebook.png";
-import google from "../assets/images/search.png";
+import { GOOGLE_URL, FACEBOOK_URL } from "<Constants>/constants";
+import facebook from "<Images>/facebook.png";
+import google from "<Images>/search.png";
 
 const SocialLink = ({ message }) => (
   <div className="social-link">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validateInput, { isNotValid } from "../../utils/validation";
+import validateInput, { isNotValid } from "<Utils>/validation";
 
 export const AuthWrapper = AuthComponent => {
   return class newComponent extends Component {
