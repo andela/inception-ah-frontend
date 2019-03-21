@@ -20,7 +20,7 @@ const SignUpPage = ({
       <div className="sign-up-page__navigation-bar">
         <img src={logo} className="sign-up-page__logo__img" />
         <span>
-          <Link to="/lateefat">Log in</Link>
+          <Link to="/signin">Log in</Link>
         </span>
       </div>
       <div className="sign-up-page__form-container">
@@ -52,6 +52,7 @@ const SignUpPage = ({
             type="email"
             name="email"
             value={email}
+            errors={errors.email}
             placeholder="Email address"
             handleChange={handleChange}
           />
@@ -60,6 +61,7 @@ const SignUpPage = ({
             type="password"
             name="password"
             value={password}
+            errors={errors.password}
             placeholder="Password"
             handleChange={handleChange}
           />
