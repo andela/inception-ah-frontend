@@ -27,6 +27,19 @@
       margin-bottom: 30px;
     }
 
+    .sign-in-page__form__forgot-password {
+      display: flex;
+      justify-content: flex-end;
+
+      a {
+        color: $text;
+
+        &:hover {
+          color: $background;
+        }
+      }
+    }
+
     .sign-in-page__signup-link {
       display: flex;
       justify-content: flex-start;
@@ -79,24 +92,86 @@
   }
 }
 
+.sign-in-page__heading {
+  color: $text;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.sign-in-page__navigation-bar {
+  width: 80%;
+  margin: 0 auto;
+  position: fixed;
+  top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+  .sign-in-page__logo__img {
+    width: 128px;
+    height: 23px;
+    margin: 0;
+    display: inline-block;
+    padding: 0;
+  }
+
+  span {
+    background-color: $text;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 1rem;
+
+    a {
+      color: $background;
+
+      &:hover {
+        color: $background;
+      }
+    }
+  }
+}
+
 /* For mobile devices */
-@media only screen and (max-width: 480px) {
+@media screen and (max-width: 400px) {
   .sign-in-page {
     .sign-in-page__form {
       border: none;
+      padding: 0px 30px;
+
+      .sign-in-page__form__forgot-password {
+        font-size: 0.8rem;
+      }
 
       .sign-in-page__signup-link {
         font-size: 0.8rem;
       }
     }
 
+    .sign-in-page__heading {
+      font-size: 13px;
+      width: 270px;
+      margin: 10px auto;
+    }
+
     .sign-in-page__form-container {
-      padding-top: 80px;
+      width: 330px;
+      margin-top: 170px;
     }
   }
 
+  .sign-in-page__form.ui .input,
+  .sign-in-page__btn {
+    height: 30px;
+    font-size: 0.9rem;
+  }
+
+  .sign-in-page__btn {
+    padding: 0;
+  }
+
   .sign-in-page__logo__img {
-    width: 120px;
+    width: 100px;
     height: auto;
     margin: auto;
   }

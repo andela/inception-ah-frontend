@@ -1,0 +1,13 @@
+@import "./color";
+
+.dropdown-color,
+.dropdown-color:hover {
+  color: $grey;
+}
+
+.left.item .ui.floating.label {
+  top: 0.3rem !important;
+  left: 68%;
+  font-size: 0.5rem;
+  background-color: #ff7a00;
+}

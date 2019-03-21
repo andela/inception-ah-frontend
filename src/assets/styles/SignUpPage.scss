@@ -70,8 +70,8 @@
   margin: 0 auto;
 
   .sign-up-page__logo__img {
-    width: 170px;
-    height: 30px;
+    width: 128px;
+    height: 23px;
     margin: 0;
     display: inline-block;
     padding: 0;
@@ -79,12 +79,12 @@
 
   span {
     background-color: $text;
-    padding: 8px 25px;
+    padding: 0.3rem 0.8rem;
     border-radius: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     a {
-      color: $black;
+      color: $background;
 
       &:hover {
         color: $background;
@@ -143,18 +143,6 @@
       }
     }
 
-    .sign-up-page__navigation-bar {
-      .sign-up-page__logo__img {
-        width: 120px;
-        height: 20px;
-      }
-      span {
-        padding: 6px 15px;
-        a {
-          font-size: 12px;
-        }
-      }
-    }
     .sign-up-page__heading {
       font-size: 13px;
       width: 270px;
@@ -162,14 +150,14 @@
     }
     .sign-up-page__form-container {
       width: 330px;
-      margin-top: 150px;
+      margin-top: 95px
     }
   }
 
-  .ui .input,
+  .sign-up-page__form.ui .input,
   .sign-up-page__btn {
-    height: 30px !important;
-    font-size: 0.9rem !important;
+    height: 30px;
+    font-size: 0.9rem;
   }
 
   .sign-up-page__btn {
