@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import queryString from "querystring";
 import { withRouter } from "react-router-dom";
 import verifyUserEmail from "<authActions>/verifyUser";
+import { getUserId } from "../../utils/authenticate";
 
 class VerifyAccount extends Component {
   componentDidMount() {
@@ -14,7 +15,13 @@ class VerifyAccount extends Component {
     this.props
       .verifyUserEmail(token)
       .then(() => {
-        this.props.history.push("/profile");
+        getUserId
+          .then(userId => {
+            this.props.history.push(`/profile/${userId}`);
+          })
+          .catch(() => {
+            this.props.history.push("/");
+          });
       })
       .catch(() => {
         this.props.history.push("/");

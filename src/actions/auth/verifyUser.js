@@ -1,4 +1,4 @@
-import request from "<Api>/request";
+import request from "<api>/request";
 import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
 import { API_URL } from "<constants>/constants";
 

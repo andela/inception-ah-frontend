@@ -1,10 +1,12 @@
 import HomePage from "<pages>/Homepage";
 import SignInWrapper from "<auth>/SignIn";
 import SignUpWrapper from "<auth>/SignUp";
-import ProfilePage from "<pages>/Profile";
+// import ProfilePage from "<pages>/Profile";
 import SocialRedirect from "<auth>/SocialAuth";
 import PasswordRequest from "<auth>/RequestPasswordReset";
 import ResetPassword from "<auth>/ResetPassword";
+import VerifyAccount from "<auth>/VerifyAccount";
+import ProfileWrapper from "./profileWrapper";
 
 const Routes = {
   default: [
@@ -32,13 +34,20 @@ const Routes = {
     {
       path: "/password-reset",
       component: PasswordRequest
+    },
+    // {
+    //   path: "/profile",
+    //   component: ProfilePage
+    // },
+    {
+      path: "/profile/:userId",
+      component: ProfileWrapper
+    },
+    {
+      path: "/verification",
+      component: VerifyAccount
     }
   ],
-  secured: [
-    {
-      path: "/profile",
-      component: ProfilePage
-    }
-  ]
+  secured: []
 };
 export default Routes;

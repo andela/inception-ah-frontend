@@ -10,11 +10,12 @@ const SignInPage = ({ email, handleChange, handleSubmit }) => {
     <div className="sign-in-page">
       <div className="sign-in-page__form-container">
         <div className="sign-in-page__logo">
-          <img src={logo} className="sign-in-page__logo__img" />
-          <p>It is very easy to Reset your Password!</p>
+          <Link to="/">
+            <img src={logo} className="sign-in-page__logo__img" />
+          </Link>
         </div>
         <form className="ui form sign-in-page__form" onSubmit={handleSubmit}>
-          <p className="">Request Password Reset!</p>
+          <p className="">Request Password Reset</p>
           <Input
             icon="envelope icon"
             type="email"

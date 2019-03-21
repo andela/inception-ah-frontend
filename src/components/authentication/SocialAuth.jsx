@@ -3,6 +3,7 @@ import queryString from "querystring";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { setToken } from "<utils>/authenticate";
+import jwtDecode from "jwt-decode";
 
 class SocialRedirect extends Component {
   componentDidMount() {
@@ -13,7 +14,8 @@ class SocialRedirect extends Component {
     const token = parsed["?token"];
     if (token) {
       setToken(token).then(() => {
-        this.props.history.push("/profile");
+        const userId = jwtDecode(token);
+        this.props.history.push(`/profile/${userId}`);
         toast.success("You are successfully logged in");
       });
     }

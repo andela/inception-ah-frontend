@@ -1,3 +1,5 @@
+import jwtDecode from "jwt-decode";
+
 export default {
   authenticate() {
     const token = localStorage.getItem("token");
@@ -13,4 +15,14 @@ export default {
 
 export const setToken = token => {
   return Promise.resolve(localStorage.setItem("token", token));
+};
+
+export const getUserId = () => {
+  const token = localStorage.getItem("token");
+  try {
+    const decoded = jwtDecode(token);
+    return Promise.resolve(decoded.userId);
+  } catch (error) {
+    return Promise.reject(error);
+  }
 };

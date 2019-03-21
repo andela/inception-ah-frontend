@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: buildDirectory,
     filename: "build.bundle.js",
-    publicPath: "./"
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -59,6 +59,8 @@ module.exports = {
       "<images>": path.resolve(__dirname, "../src/assets/images"),
       "<styles>": path.resolve(__dirname, "../src/assets/styles"),
       "<authActions>": path.resolve(__dirname, "../src/actions/auth"),
+      "<profileActions>": path.resolve(__dirname, "../src/actions/profile"),
+      "<reducers>": path.resolve(__dirname, "../src/reducers"),
       "<api>": path.resolve(__dirname, "../src/api")
     },
     extensions: [".jsx", ".js", ".json"]

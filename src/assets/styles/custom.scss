@@ -1,0 +1,136 @@
+@import "./color";
+
+.custom-container {
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui.button.profile-info__action_btn {
+  border: 0.5px solid $background;
+  color: $background;
+  background-color: $text;
+  border-radius: 0.325rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.ui.segment {
+  border-radius: 0;
+}
+.profile-tab .ui.text.menu {
+  background-color: $blue;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 2.5rem;
+}
+
+.profile-tab .ui.ui.text.menu .item {
+  color: $text;
+  margin: 0 0.9375rem;
+}
+
+.profile-tab .ui.tab.active {
+  margin: 0;
+  position: relative;
+  min-height: calc(100vh - 23.625rem);
+}
+
+.ui.text.menu .active.item::after {
+  position: absolute;
+  content: "";
+  height: 0.25rem;
+  width: 100%;
+  bottom: -0.6rem;
+  left: 0;
+  background-color: $background;
+}
+
+.ui.menu.fixed .item:first-child,
+.ui.menu.fixed .item:last-child {
+  padding: 0.4rem;
+}
+
+.ui.floating.label {
+  top: 0.3rem;
+  left: 68%;
+  font-size: 0.5rem;
+  background-color: $background;
+}
+
+.ui.menu .item > .input input {
+  width: 0.625rem;
+  transition: width 0.4s ease-in-out;
+  border: 0.125rem solid $profile-background;
+}
+
+.ui.menu .item > .input input:focus {
+  width: 12.5rem;
+}
+
+@media (max-width: 26.5625rem) {
+  .ui.menu .item > .input input:focus {
+    width: 7.5rem;
+  }
+}
+
+.ui.menu:not(.vertical) .left.item {
+  padding: 0.35rem;
+}
+
+.ui.modal > .content > .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ui.modal > .content > .icon + .description,
+.ui.modal > .content > .image + .description {
+  flex: 1;
+}
+
+.ui.input.profile-img__upload_btn {
+  margin: 1.2rem auto;
+  width: 90%;
+  cursor: pointer;
+  border: none;
+}
+
+.ui.input > input {
+  padding: 0.4rem;
+  border: 1.5px solid $profile-background;
+  color: $background;
+  background-color: $profile-background;
+  outline: none;
+}
+
+.ui.input > input:active {
+  border-color: none;
+}
+
+.ui.fluid.button.profile-info__submit-btn {
+  background-color: $background;
+  color: $text;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+@media (max-width: 26.5625rem) {
+  .profile-img__upload .ui.medium.image,
+  .ui.medium.images .image,
+  .ui.medium.images img,
+  .ui.medium.images svg {
+    width: 5.9375rem;
+    margin: auto;
+  }
+  .ui.button.profile-info__action_btn {
+    padding: 0.287rem 1rem;
+  }
+}
