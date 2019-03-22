@@ -9,13 +9,17 @@ import SocialLink from "<components>/SocialLinks";
 const SignInPage = ({ email, password, handleChange, handleSubmit }) => {
   return (
     <div className="sign-in-page">
-      <div className="sign-in-page__form-container">
-        <div className="sign-in-page__logo">
+      <div className="sign-in-page__navigation-bar">
+        <Link to="/">
           <img src={logo} className="sign-in-page__logo__img" />
-          <p>Login to start doing what you know how to do best!</p>
-        </div>
+        </Link>
+        <span>
+          <Link to="/signup">Sign up</Link>
+        </span>
+      </div>
+      <div className="sign-in-page__form-container">
+        <p className="sign-in-page__heading">Log in to your account</p>
         <form className="ui form sign-in-page__form" onSubmit={handleSubmit}>
-          <p className="">Log in to your account</p>
           <Input
             icon="envelope icon"
             type="email"

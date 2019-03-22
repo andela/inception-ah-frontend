@@ -1,0 +1,17 @@
+@import "./color";
+
+.ui.menu .item > .input input {
+  width: 0.625rem;
+  transition: width 0.4s ease-in-out;
+  border: 0.125rem solid $profile-background;
+}
+
+.ui.menu .item > .input input:focus {
+  width: 12.5rem;
+}
+
+@media (max-width: 26.5625rem) {
+  .ui.menu .item > .input input:focus {
+    width: 7.5rem;
+  }
+}
