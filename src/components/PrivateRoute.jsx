@@ -6,7 +6,7 @@ import auth from "<utils>/authenticate";
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => (auth.authenticate() === true ? (
+    render={props => (auth.authenticate() === false ? (
         <Component {...props} />
       ) : (
         <Redirect

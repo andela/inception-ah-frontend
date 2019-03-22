@@ -5,6 +5,7 @@ import ProfilePage from "<pages>/Profile";
 import SocialRedirect from "<auth>/SocialAuth";
 import PasswordRequest from "<auth>/RequestPasswordReset";
 import ResetPassword from "<auth>/ResetPassword";
+import VerifyAccount from "<auth>/VerifyAccount";
 
 const Routes = {
   default: [
@@ -32,13 +33,16 @@ const Routes = {
     {
       path: "/password-reset",
       component: PasswordRequest
-    }
-  ],
-  secured: [
+    },
     {
       path: "/profile",
       component: ProfilePage
+    },
+    {
+      path: "/verification",
+      component: VerifyAccount
     }
-  ]
+  ],
+  secured: []
 };
 export default Routes;

@@ -17,7 +17,7 @@ class SignUpWrapper extends Component {
       .registerNewUser(this.props.state)
       .then(response => {
         this.props.clearFields();
-        toast.success(response, { autoClose: 20000 });
+        toast.success(response, { autoClose: false });
       })
       .catch(error => {
         toast.error(error);

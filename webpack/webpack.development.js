@@ -3,6 +3,7 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     port: 8000,
-    publicPath: "/"
+    publicPath: "/",
+    host: "localhost"
   }
 };

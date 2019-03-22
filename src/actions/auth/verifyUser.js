@@ -1,9 +1,9 @@
-import request from "<Api>/request";
+import request from "<api>/request";
 import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
-import { API_URL } from "<constants>/constants";
+import { API_URL_DEV } from "<constants>/constants";
 
 export default token => dispatch => {
-  return request(`${API_URL}/auth/verification/${token}`, "GET")
+  return request(`${API_URL_DEV}/auth/verification/${token}`, "GET")
     .then(response => {
       localStorage.setItem("token", response.token);
       dispatch({

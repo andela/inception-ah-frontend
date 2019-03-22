@@ -15,13 +15,15 @@ const ResetPassword = ({
   return (
     <div className="sign-up-page">
       <div className="sign-up-page__navigation-bar">
-        <img src={logo} className="sign-up-page__logo__img" />
+        <Link to="/">
+          <img src={logo} className="sign-up-page__logo__img" />
+        </Link>
         <span>
           <Link to="/signin">Log in</Link>
         </span>
       </div>
       <div className="sign-up-page__form-container">
-        <p className="sign-up-page__heading">Change Your Password!</p>
+        <p className="sign-up-page__heading">Change Your Password</p>
         <form
           className="ui form sign-up-page__form reset-password"
           onSubmit={handleSubmit}
