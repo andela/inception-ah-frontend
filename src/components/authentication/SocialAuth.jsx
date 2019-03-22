@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import queryString from "querystring";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import { setToken } from "../../utils/authenticate";
+import { setToken } from "<utils>/authenticate";
 
 class SocialRedirect extends Component {
   componentDidMount() {

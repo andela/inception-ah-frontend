@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import authenticate from "../utils/authenticate";
+import authenticate from "<utils>/authenticate";
 
 class Profile extends Component {
   logOut = () => {

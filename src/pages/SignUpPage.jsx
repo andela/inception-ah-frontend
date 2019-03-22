@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Input from "<Components>/common/Input";
-import "../assets/styles/SignUpPage.scss";
-import logo from "../assets/images/Logo1.png";
-import SocialLink from "../components/SocialLinks";
+import Input from "<common>/Input";
+import "<styles>/SignUpPage.scss";
+import logo from "<images>/Logo1.png";
+import SocialLink from "<components>/SocialLinks";
 
 const SignUpPage = ({
   firstName,
@@ -20,7 +20,7 @@ const SignUpPage = ({
       <div className="sign-up-page__navigation-bar">
         <img src={logo} className="sign-up-page__logo__img" />
         <span>
-          <Link to="/lateefat">Log in</Link>
+          <Link to="/signin">Log in</Link>
         </span>
       </div>
       <div className="sign-up-page__form-container">
@@ -52,6 +52,7 @@ const SignUpPage = ({
             type="email"
             name="email"
             value={email}
+            errors={errors.email}
             placeholder="Email address"
             handleChange={handleChange}
           />
@@ -60,6 +61,7 @@ const SignUpPage = ({
             type="password"
             name="password"
             value={password}
+            errors={errors.password}
             placeholder="Password"
             handleChange={handleChange}
           />

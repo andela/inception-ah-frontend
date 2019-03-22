@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import SignInPage from "<Pages>/SignInPage";
-import AuthWrapper from "<Auth>/AuthWrapper";
-import signInUser from "../../actions/auth/signinActions";
+import SignInPage from "<pages>/SignInPage";
+import AuthWrapper from "<auth>/AuthWrapper";
+import signInUser from "<authActions>/signinActions";
 
 class SignInWrapper extends React.Component {
   handleSubmit(e) {

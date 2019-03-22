@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Routes from "<Components>/Routes";
-import PrivateRoute from "<Components>/PrivateRoute";
+import Routes from "<components>/routes";
+import PrivateRoute from "<components>/PrivateRoute";
 
 const BaseRoute = () => (
   <Fragment>

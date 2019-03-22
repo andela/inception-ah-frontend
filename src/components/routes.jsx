@@ -1,8 +1,10 @@
-import HomePage from "<Pages>/HomePage";
-import SignInWrapper from "<Auth>/SignIn";
-import SignUpWrapper from "<Auth>/Signup";
-import ProfilePage from "<Pages>/Profile";
-import SocialRedirect from "<Auth>/SocialAuth";
+import HomePage from "<pages>/Homepage";
+import SignInWrapper from "<auth>/SignIn";
+import SignUpWrapper from "<auth>/SignUp";
+import ProfilePage from "<pages>/Profile";
+import SocialRedirect from "<auth>/SocialAuth";
+import PasswordRequest from "<auth>/RequestPasswordReset";
+import ResetPassword from "<auth>/ResetPassword";
 
 const Routes = {
   default: [
@@ -20,8 +22,16 @@ const Routes = {
       component: SignUpWrapper
     },
     {
+      path: "/resetPassword",
+      component: ResetPassword
+    },
+    {
       path: "/social-auth",
       component: SocialRedirect
+    },
+    {
+      path: "/password-reset",
+      component: PasswordRequest
     }
   ],
   secured: [

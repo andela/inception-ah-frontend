@@ -1,18 +1,20 @@
 import React, { Component } from "react";
-import validateInput, { isNotValid } from "<Utils>/validation";
+import validateInput, { isNotValid } from "<utils>/validation";
 
 export const AuthWrapper = AuthComponent => {
   return class newComponent extends Component {
     state = {
       email: "",
       password: "",
+      confirmPassword: "",
       firstName: "",
       lastName: "",
       errors: {
         email: "",
         password: "",
         firstName: "",
-        lastName: ""
+        lastName: "",
+        confirmPassword: ""
       }
     };
 

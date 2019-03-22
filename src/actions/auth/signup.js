@@ -1,6 +1,6 @@
-import request from "../../api/request";
-import { SET_ERROR, VERIFY_USER } from "./types/types";
-import { API_URL } from "../../constants/constants";
+import request from "<api>/request";
+import { SET_ERROR, VERIFY_USER } from "<authActions>/types/types";
+import { API_URL } from "<constants>/constants";
 
 export default ({ firstName, lastName, email, password }) => dispatch => {
   return request(`${API_URL}/auth/signup`, "POST", {

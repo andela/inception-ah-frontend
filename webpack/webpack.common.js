@@ -48,17 +48,20 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: ["node_modules"],
     alias: {
-      "<Pages>": path.resolve(__dirname, "../src/pages"),
-      "<Components>": path.resolve(__dirname, "../src/components"),
-      "<Common>": path.resolve(__dirname, "../src/components/common"),
-      "<Auth>": path.resolve(__dirname, "../src/components/auth"),
-      "<Utils>": path.resolve(__dirname, "../src/utils"),
-      "<Constants>": path.resolve(__dirname, "../src/constants"),
-      "<Images>": path.resolve(__dirname, "../src/assets/images"),
-      "<Styles>": path.resolve(__dirname, "../src/assets/styles")
+      "<components>": path.resolve(__dirname, "../src/components"),
+      "<auth>": path.resolve(__dirname, "../src/components/authentication"),
+      "<common>": path.resolve(__dirname, "../src/components/common"),
+      "<constants>": path.resolve(__dirname, "../src/constants"),
+      "<pages>": path.resolve(__dirname, "../src/pages"),
+      "<utils>": path.resolve(__dirname, "../src/utils"),
+      "<images>": path.resolve(__dirname, "../src/assets/images"),
+      "<styles>": path.resolve(__dirname, "../src/assets/styles"),
+      "<authActions>": path.resolve(__dirname, "../src/actions/auth"),
+      "<api>": path.resolve(__dirname, "../src/api")
     },
-    extensions: [" ", ".js", ".jsx"]
+    extensions: [".jsx", ".js", ".json"]
   },
   plugins: [
     new cleanWebpackPlugin(),

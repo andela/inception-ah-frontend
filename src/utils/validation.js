@@ -1,4 +1,4 @@
-import { emailRegex, passwordRegex } from "./regex";
+import { emailRegex, passwordRegex } from "<utils>/regex";
 
 export default (state, e) => {
   const { name, value } = e.target;
@@ -20,8 +20,12 @@ export default (state, e) => {
     case "password":
       errors.password = passwordRegex.test(value)
         ? ""
-        : "Password must be atleast 6 chars with atleast 1 "
-        + "uppercase, 1 number, & 1 special char (#?!@$%^&*-.)";
+        : "Password must be atleast 6 chars with atleast 1 " +
+          "uppercase, 1 number, & 1 special char (#?!@$%^&*-.)";
+      break;
+    case "confirmPassword":
+      errors.confirmPassword =
+        state.password !== value ? "Password does not Match" : "";
       break;
     default:
       break;

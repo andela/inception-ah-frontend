@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import queryString from "querystring";
 import { withRouter } from "react-router-dom";
-import verifyUserEmail from "../../actions/auth/verifyUser";
+import verifyUserEmail from "<authActions>/verifyUser";
 
 class VerifyAccount extends Component {
   componentDidMount() {

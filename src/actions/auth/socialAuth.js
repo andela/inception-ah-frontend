@@ -1,5 +1,5 @@
-import request from "../../api/request";
-import { SET_CURRENT_USER, SET_ERROR } from "./types/types";
+import request from "<Api>/request";
+import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
 
 export default (url, socialToken) => dispatch => {
   return request(`${url}/${socialToken}`, "GET")

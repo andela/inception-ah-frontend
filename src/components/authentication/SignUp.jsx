@@ -3,9 +3,9 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import SignUpPage from "../../pages/SignUpPage";
-import registerNewUser from "../../actions/auth/signup";
-import AuthWrapper from "./AuthWrapper";
+import SignUpPage from "<pages>/SignUpPage";
+import registerNewUser from "<authActions>/signup";
+import AuthWrapper from "<auth>/AuthWrapper";
 
 class SignUpWrapper extends Component {
   handleSubmit = e => {
