@@ -1,9 +1,8 @@
 import React from "react";
-import NavigationBar from "../../src/components/NavigationBar";
 import { Enzyme } from "../../setup.config";
+import NavigationBar from "<common>/NavigationBar";
 
 const { shallow } = Enzyme;
-
 
 describe("NavigationBar Component", () => {
   const wrapper = shallow(<NavigationBar />);

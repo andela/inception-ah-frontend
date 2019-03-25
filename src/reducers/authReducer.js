@@ -1,28 +1,24 @@
-import {
-  SET_CURRENT_USER,
-  SET_ERROR,
-  VERIFY_USER
-} from "../actions/auth/types/types";
+import actionTypes from "<actions>/auth/types";
 
 const initialState = {
   isAuthenticated: false,
-  errors: "",
+  error: "",
   authMessage: ""
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_USER:
+    case actionTypes.SET_CURRENT_USER:
       return {
         ...state,
         isAuthenticated: true
       };
-    case SET_ERROR:
+    case actionTypes.SET_ERROR:
       return {
         ...state,
-        errors: action.payload
+        errors: action.error
       };
-    case VERIFY_USER:
+    case actionTypes.VERIFY_USER:
       return {
         ...state,
         authMessage: action.payload

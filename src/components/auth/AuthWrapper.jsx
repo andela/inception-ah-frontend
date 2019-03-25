@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import validateInput, { isNotValid } from "../../utils/validation";
+import validateInput, { isNotValid } from "<utils>/validation";
 
 export const AuthWrapper = AuthComponent => {
   return class newComponent extends Component {
@@ -35,9 +35,10 @@ export const AuthWrapper = AuthComponent => {
     };
 
     render() {
+      const authData = this.state;
       return (
         <AuthComponent
-          state={this.state}
+          authData={authData}
           {...this.props}
           isNotValid={isNotValid}
           handleChange={this.handleChange}

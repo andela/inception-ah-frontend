@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import { emailRegex, passwordRegex } from "./regex";
 
 export default (state, e) => {

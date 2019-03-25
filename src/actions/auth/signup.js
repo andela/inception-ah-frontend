@@ -1,26 +1,37 @@
-import request from "../../api/request";
-import { SET_ERROR, VERIFY_USER } from "./types/types";
-import { API_URL } from "../../constants/constants";
+import { toast } from "react-toastify";
+import request from "<api>/request";
+import actionTypes from "./types";
+import { API_URL } from "<constants>/constants";
 
-export default ({ firstName, lastName, email, password }) => dispatch => {
-  return request(`${API_URL}/auth/signup`, "POST", {
-    firstName,
-    lastName,
-    email,
-    password
-  })
-    .then(response => {
-      dispatch({
-        type: VERIFY_USER,
-        payload: response.message
-      });
-      return Promise.resolve(response.message);
-    })
-    .catch(errors => {
-      dispatch({
-        type: SET_ERROR,
-        payload: errors
-      });
-      return Promise.reject(errors);
+export const signUpSuccess = payload => ({
+  type: actionTypes.VERIFY_USER,
+  payload
+});
+
+export const signUpFailure = error => ({
+  type: actionTypes.SET_ERROR,
+  error
+});
+
+const signUpUser = ({
+  firstName,
+  lastName,
+  email,
+  password
+}) => async dispatch => {
+  try {
+    const response = await request(`${API_URL}/auth/signup`, "POST", {
+      firstName,
+      lastName,
+      email,
+      password
     });
+
+    dispatch(signUpSuccess(response.message));
+    toast.success(response.message, { autoClose: false });
+  } catch (error) {
+    dispatch(signUpFailure(error.message));
+    toast.error(error.message);
+  }
 };
+export default signUpUser;

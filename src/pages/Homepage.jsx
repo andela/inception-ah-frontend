@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 
 class Homepage extends Component {
   render() {
@@ -14,4 +15,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage; 
+export default Homepage;

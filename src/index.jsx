@@ -6,7 +6,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./index.scss";
 import "semantic-ui-css/semantic.min.css";
 import "react-toastify/dist/ReactToastify.css";
-import BaseRoute from "<Components>/BaseRoute";
+import BaseRoute from "<components>/BaseRoute";
+import store from "<src>/store";
 
 const App = () => {
   return (

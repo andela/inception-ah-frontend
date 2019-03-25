@@ -1,8 +1,8 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
-import verifyUserEmail from "../../actions/auth/verifyUser";
+import verifyUserEmail from "<actions>/auth/verifyUser";
 
 class VerifyAccount extends Component {
   componentDidMount() {
@@ -20,7 +20,9 @@ class VerifyAccount extends Component {
   }
 
   render() {
-    return null;
+    return (
+      <h1>Verification in Progress...</h1>
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
-import Error from "../../../src/components/common/Error";
-import { Enzyme } from "../../../setup.config";
+import { Enzyme } from "../../setup.config";
+import Error from "<common>/Error";
 
 const { shallow } = Enzyme;
 

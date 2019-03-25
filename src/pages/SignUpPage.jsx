@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Input from "../components/common/Input";
-import "../assets/styles/SignUpPage.scss";
-import SocialLink from "../components/SocialLinks";
-import NavigationBar from "../components/NavigationBar";
+import Input from "<components>/common/Input";
+import "<assets>/styles/SignUpPage.scss";
+import SocialLink from "<components>/SocialLinks";
+import NavigationBar from "<components>/common/NavigationBar";
 
 const SignUpPage = ({
   firstName,
@@ -13,19 +13,17 @@ const SignUpPage = ({
   password,
   handleChange,
   handleSubmit,
+  errors,
+  isActive
 }) => {
   return (
     <div className="sign-up-page">
-      <div className="sign-up-page__navigation-bar">
-        <img src={logo} className="sign-up-page__logo__img" />
-        <span>
-          <Link to="/lateefat">Log in</Link>
-        </span>
-      </div>
+      <NavigationBar />
+
       <div className="sign-up-page__form-container">
         <p className="sign-up-page__heading">
-            Sign up for free to start sharing your inspiration and story on
-            authors haven
+          Sign up for free to start sharing your inspiration and story on
+          authors haven
         </p>
         <form className="ui form sign-up-page__form" onSubmit={handleSubmit}>
           <Input
@@ -53,6 +51,7 @@ const SignUpPage = ({
             value={email}
             placeholder="Email address"
             handleChange={handleChange}
+            errors={errors.email}
           />
           <Input
             icon="lock icon"
@@ -61,9 +60,11 @@ const SignUpPage = ({
             value={password}
             placeholder="Password"
             handleChange={handleChange}
+            errors={errors.password || ""}
           />
           <div className="field">
             <input
+              disabled={isActive}
               type="submit"
               value="Sign Up"
               className="sign-up-page__btn"
@@ -72,16 +73,7 @@ const SignUpPage = ({
           <p className="sign-up-page__signup-link">
             Already have an account? <Link to="#">Log In</Link>
           </p>
-          <div className="sign-up-page__social-links">
-            <span>Sign Up with</span>
-            <Link to="#">
-              <img src={google} />
-            </Link>
-            <Link to="#">
-              {" "}
-              <img src={facebook} />
-            </Link>
-          </div>
+          <SocialLink />
         </form>
       </div>
     </div>
@@ -89,12 +81,14 @@ const SignUpPage = ({
 };
 
 SignUpPage.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   password: PropTypes.string,
   handleChange: PropTypes.func,
   handleSubmit: PropTypes.func,
+  errors: PropTypes.object,
+  isActive: PropTypes.bool
 };
 
 export default SignUpPage;

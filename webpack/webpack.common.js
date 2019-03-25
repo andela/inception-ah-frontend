@@ -15,14 +15,6 @@ module.exports = {
   },
   module: {
     rules: [
-      // {
-      //   test: /\.s?[ac]ss$/,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     { loader: "css-loader", options: { url: false, sourceMap: true } },
-      //     { loader: "sass-loader", options: { sourceMap: true } }
-      //   ]
-      // },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
@@ -56,12 +48,17 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [path.resolve(__dirname, "../src"), "node_modules"],
     alias: {
-      "<Pages>": path.resolve(__dirname, "../src/pages"),
-      "<Components>": path.resolve(__dirname, "../src/components"),
-      "<Common>": path.resolve(__dirname, "../src/components/common"),
-      "<Auth>": path.resolve(__dirname, "../src/components/Auth"),
-      "<Assets>": path.resolve(__dirname, "../src/asserts")
+      "<src>": path.resolve(__dirname, "../src"),
+      "<actions>": path.resolve(__dirname, "../src/actions"),
+      "<api>": path.resolve(__dirname, "../src/api"),
+      "<assets>": path.resolve(__dirname, "../src/assets"),
+      "<components>": path.resolve(__dirname, "../src/components"),
+      "<constants>": path.resolve(__dirname, "../src/constants"),
+      "<pages>": path.resolve(__dirname, "../src/pages"),
+      "<reducers>": path.resolve(__dirname, "../src/reducers"),
+      "<utils>": path.resolve(__dirname, "../src/utils")
     },
     extensions: [" ", ".js", ".jsx"]
   },
