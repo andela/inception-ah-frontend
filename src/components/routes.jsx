@@ -1,7 +1,8 @@
 import HomePage from "<pages>/Homepage";
 import SignInWrapper from "<auth>/SignIn";
 import SignUpWrapper from "<auth>/SignUp";
-// import ProfilePage from "<pages>/Profile";
+import ProfilePage from "<pages>/Profile";
+import ViewArticlePage from "<pages>/viewArticle";
 import SocialRedirect from "<auth>/SocialAuth";
 import PasswordRequest from "<auth>/RequestPasswordReset";
 import ResetPassword from "<auth>/ResetPassword";
@@ -48,6 +49,11 @@ const Routes = {
       component: VerifyAccount
     }
   ],
-  secured: []
+  secured: [
+    {
+      path: "/articles/view",
+      component: ViewArticlePage
+    }
+  ]
 };
 export default Routes;
