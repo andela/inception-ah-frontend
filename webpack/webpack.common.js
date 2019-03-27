@@ -3,6 +3,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const path = require("path");
 const { appDirectory, buildDirectory } = require("./filePaths");
+const dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: {
@@ -10,18 +11,11 @@ module.exports = {
   },
   output: {
     path: buildDirectory,
-    filename: "build.bundle.js"
+    filename: "build.bundle.js",
+    publicPath: "./"
   },
   module: {
     rules: [
-      {
-        test: /\.s?[ac]ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { url: false, sourceMap: true } },
-          { loader: "sass-loader", options: { sourceMap: true } }
-        ]
-      },
       {
         test: /\.(jsx|js)$/,
         exclude: /node_modules/,
@@ -39,15 +33,36 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(css|scss|sass)$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|otf|svg)$/,
+        use: [
+          {
+            loader: "file-loader"
+          }
+        ]
       }
     ]
   },
   resolve: {
+    modules: ["node_modules"],
     alias: {
-      "<Pages>": path.resolve(__dirname, "../src/pages"),
-      "<Components>": path.resolve(__dirname, "../src/components")
+      "<components>": path.resolve(__dirname, "../src/components"),
+      "<auth>": path.resolve(__dirname, "../src/components/authentication"),
+      "<common>": path.resolve(__dirname, "../src/components/common"),
+      "<constants>": path.resolve(__dirname, "../src/constants"),
+      "<pages>": path.resolve(__dirname, "../src/pages"),
+      "<utils>": path.resolve(__dirname, "../src/utils"),
+      "<images>": path.resolve(__dirname, "../src/assets/images"),
+      "<styles>": path.resolve(__dirname, "../src/assets/styles"),
+      "<authActions>": path.resolve(__dirname, "../src/actions/auth"),
+      "<api>": path.resolve(__dirname, "../src/api")
     },
-    extensions: [" ", ".js", ".jsx"]
+    extensions: [".jsx", ".js", ".json"]
   },
   plugins: [
     new cleanWebpackPlugin(),
@@ -57,6 +72,7 @@ module.exports = {
     new htmlWebpackPlugin({
       template: `${appDirectory}/index.html`,
       filename: `${buildDirectory}/index.html`
-    })
+    }),
+    new dotenv(),
   ]
 };
