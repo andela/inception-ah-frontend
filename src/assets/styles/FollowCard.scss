@@ -53,6 +53,19 @@
   background-color: $text;
 }
 
+.follow__action_btn {
+  border-color: $black;
+  color: $black;
+  background-color: $text;
+  font-size: 0.8rem;
+  width: 70px;
+}
+
+.follow__action_btn:hover {
+  color: $black !important;
+  background-color: rgb(240, 240, 240) !important;
+}
+
 .follow-card__action_btn:hover,
 .profile-info__action_btn:hover {
   background-color: $background;

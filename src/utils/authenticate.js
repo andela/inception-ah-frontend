@@ -21,7 +21,6 @@ export default {
 };
 
 export const setToken = token => {
-  console.log(token)
   return Promise.resolve(localStorage.setItem("token", token));
 };
 

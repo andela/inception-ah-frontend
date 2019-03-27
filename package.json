@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "dotenv": "^6.2.0",
     "dotenv-webpack": "^1.7.0",
     "draft-convert": "^2.1.4",
