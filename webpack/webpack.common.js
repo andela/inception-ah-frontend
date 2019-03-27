@@ -75,6 +75,7 @@ module.exports = {
     new htmlWebpackPlugin({
       template: `${appDirectory}/index.html`,
       filename: `${buildDirectory}/index.html`
-    })
+    }),
+    new dotenv(),
   ]
 };
