@@ -96,7 +96,7 @@ class ProfileInfo extends Component {
   }
 
   render() {
-    if (this.state.isLoading || !this.state.firstName) {
+    if (this.state.isLoading) {
       return <Loader />;
     }
 
