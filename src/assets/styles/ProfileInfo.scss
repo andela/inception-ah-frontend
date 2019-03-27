@@ -21,6 +21,9 @@
 .profile-info__header {
   font-weight: bold;
   font-size: 2rem;
+  p {
+    text-transform: capitalize;
+  }
 }
 
 .profile-info_description {
@@ -75,9 +78,9 @@
     text-align: center;
   }
   .profile-info_description {
-    text-align: justify;
+    text-align: center;
   }
-  .ui.button.profile-info__action {
+  .profile-info__action {
     display: flex;
     justify-content: center;
   }
@@ -87,4 +90,3 @@
     justify-content: center;
   }
 }
-

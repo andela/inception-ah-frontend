@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const setAuthToken = token => {
+export default () => {
+  const token = window.localStorage.getItem("token");
   if (token) {
     // Apply to every request
     axios.defaults.headers.common.Authorization = token;
@@ -8,5 +9,3 @@ const setAuthToken = token => {
     delete axios.defaults.headers.common.Authorization;
   }
 };
-
-export default setAuthToken;
