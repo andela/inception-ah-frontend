@@ -10,7 +10,7 @@ class Profile extends Component {
     return (
       <div style={{ paddingTop: "3.125rem" }}>
         <NavBar />
-        <ProfileInfo profile={this.props.profile} />
+        <ProfileInfo profileStatus={this.props.profileStatus} />
         <ProfileTab />
         <Footer />
       </div>
@@ -20,7 +20,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
   history: PropTypes.object,
-  profile: PropTypes.object
+  profileStatus: PropTypes.bool
 };
 
 export default Profile;

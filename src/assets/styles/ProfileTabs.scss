@@ -1,0 +1,22 @@
+.profile-articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.925rem;
+  justify-items: center;
+}
+
+.ui.card {
+  margin: 0 !important;
+}
+
+@media (max-width: 960px) {
+  .profile-articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .profile-articles {
+    grid-template-columns: 1fr;
+  }
+}

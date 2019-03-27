@@ -21,6 +21,9 @@
 .profile-info__header {
   font-weight: bold;
   font-size: 2rem;
+  p {
+    text-transform: capitalize;
+  }
 }
 
 .profile-info_description {

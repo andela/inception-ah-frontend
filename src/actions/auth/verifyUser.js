@@ -5,7 +5,7 @@ import { API_URL } from "<constants>/constants";
 export default token => dispatch => {
   return request(`${API_URL}/auth/verification/${token}`, "GET")
     .then(response => {
-      localStorage.setItem("token", response.token);
+      localStorage.setItem("token", response.data.token);
       dispatch({
         type: SET_CURRENT_USER
       });

@@ -1,34 +1,70 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import EditProfileForm from "./EditProfileForm";
 import "<styles>/ProfileInfo.scss";
 import user from "<images>/user.png";
 import Loader from "./common/Loader";
+import { updateProfileRequest } from "<profileActions>/profile";
+import checkImageFile from "<utils>/checkImageType";
 
 class ProfileInfo extends Component {
   state = {
     open: false,
+    id: "",
     firstName: "",
     lastName: "",
     gender: "",
     biography: "",
     imageURL: "",
+    imageFile: {},
     middleName: "",
     mobileNumber: "",
     isLoading: true
-  };
-
-  handleChange = e => {
-    console.log(e.target.name, "<======>", e.target.value);
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
   };
 
   close = () => this.setState({ open: false });
 
   show = () => {
     this.setState({ open: true });
+  };
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+
+  handleImageChange = event => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      const filereader = new FileReader();
+      checkImageFile(filereader, file, fileType => {
+        if (
+          fileType === "image/png" ||
+          fileType === "image/gif" ||
+          fileType === "image/jpeg"
+        ) {
+          this.setState({ imageFile: file });
+          filereader.onload = e => {
+            this.setState({ imageURL: e.target.result });
+          };
+          filereader.readAsDataURL(file);
+        } else {
+          this.setState({ imageURL: this.props.profile.imageURL });
+          toast.error("please provide a valid image file");
+        }
+      });
+    } else {
+      this.setState({ imageURL: this.props.profile.imageURL, imageFile: {} });
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.close();
+    this.props.updateProfileRequest(this.state);
   };
 
   componentDidUpdate(prevProps) {
@@ -39,15 +75,20 @@ class ProfileInfo extends Component {
         imageURL,
         biography,
         gender,
-        mobileNumber
+        mobileNumber,
+        middleName,
+        id
       } = this.props.profile;
+
       this.setState({
         firstName,
         lastName,
-        mobileNumber,
+        mobileNumber: !mobileNumber ? "" : mobileNumber.trim(),
         imageURL,
         biography,
+        middleName,
         gender,
+        id,
         isLoading: false
       });
     }
@@ -55,7 +96,7 @@ class ProfileInfo extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <Loader/>;
+      return <Loader />;
     }
 
     const { imageURL, firstName, biography, lastName } = this.props.profile;
@@ -78,6 +119,12 @@ class ProfileInfo extends Component {
                 className="profile-info__action_btn"
                 handleChange={this.handleChange}
                 profile={this.state}
+                close={this.close}
+                show={this.show}
+                profileStatus={this.props.profileStatus}
+                open={this.state.open}
+                submitUpdateProfile={this.handleSubmit}
+                handleImageChange={this.handleImageChange}
               />
             </div>
           </div>
@@ -88,17 +135,16 @@ class ProfileInfo extends Component {
 }
 
 ProfileInfo.propTypes = {
-  profile: PropTypes.object
+  profile: PropTypes.object,
+  updateProfileRequest: PropTypes.func,
+  history: PropTypes.object,
+  profileStatus: PropTypes.bool
 };
 const mapStateToProps = store => ({
   profile: store.profile.profileData
 });
 
-ProfileInfo.propTypes = {
-  profile: PropTypes.object
-};
-
 export default connect(
   mapStateToProps,
-  null
-)(ProfileInfo);
+  { updateProfileRequest }
+)(withRouter(ProfileInfo));

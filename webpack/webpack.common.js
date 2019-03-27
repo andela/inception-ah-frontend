@@ -3,6 +3,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 const path = require("path");
 const { appDirectory, buildDirectory } = require("./filePaths");
+const dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: {
@@ -67,6 +68,7 @@ module.exports = {
   },
   plugins: [
     new cleanWebpackPlugin(),
+    new dotenv(),
     new MiniCssExtractPlugin({
       filename: "style.css"
     }),

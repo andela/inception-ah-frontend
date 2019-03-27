@@ -14,7 +14,7 @@ class SocialRedirect extends Component {
     const token = parsed["?token"];
     if (token) {
       setToken(token).then(() => {
-        const userId = jwtDecode(token);
+        const { userId } = jwtDecode(token);
         this.props.history.push(`/profile/${userId}`);
         toast.success("You are successfully logged in");
       });

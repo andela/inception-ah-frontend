@@ -1,15 +1,23 @@
 import jwtDecode from "jwt-decode";
 
 export default {
+  token: localStorage.getItem("token"),
+
   authenticate() {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (this.token) {
       return true;
     }
     return false;
   },
   logoutUser() {
     localStorage.removeItem("token");
+  },
+
+  authenticateEditProfile(userId) {
+    if (this.token) {
+      return jwtDecode(this.token).userId === userId;
+    }
+    return false;
   }
 };
 
