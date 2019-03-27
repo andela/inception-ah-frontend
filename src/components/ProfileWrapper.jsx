@@ -19,6 +19,7 @@ class ProfileWrapper extends Component {
     // this.props.loadUserArticles(userId);
   }
 
+
   render() {
     if (!this.props.profile) {
       return <h1>Loading your Requested Resource...</h1>;

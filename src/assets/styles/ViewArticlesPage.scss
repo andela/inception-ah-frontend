@@ -9,22 +9,16 @@
     min-height: calc(100vh - 40px);
 }
 .article-container {
-    width: 60%;
+    width: 80%;
     margin: auto;
     display:  grid;
     grid-gap: 4rem;
-    // grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr;
     padding-bottom: 2rem;
 }
 
-.article-content {
-    text-align: justify;
-    padding-top: 2rem;
-    padding-bottom: 1rem; 
-}
-
 .category-container {
-    width: 60%;
+    width: 80%;
     margin: auto;
     display: flex;
     justify-content: flex-start;  
