@@ -9,8 +9,8 @@ class SignInWrapper extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.props.state;
-    const { loginUser, history } = this.props;
-    loginUser({ email, password }, history);
+    const { loginUser, history, state: { from } } = this.props;
+    loginUser({ email, password }, history, from);
   }
 
   render() {

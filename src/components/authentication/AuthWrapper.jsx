@@ -9,6 +9,11 @@ export const AuthWrapper = AuthComponent => {
       confirmPassword: "",
       firstName: "",
       lastName: "",
+      middleName: "",
+      imageURL: "",
+      biography: "",
+      mobileNumber: "",
+      gender: "",
       errors: {
         email: "",
         password: "",

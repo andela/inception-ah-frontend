@@ -31,6 +31,7 @@ export const resetPassword = (password, query) => dispatch => {
     password
   })
     .then(response => {
+      localStorage.setItem("token", response.data.token);
       dispatch({
         type: RESET_PASSWORD,
         payload: response.message

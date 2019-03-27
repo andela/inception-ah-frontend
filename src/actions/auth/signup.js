@@ -1,10 +1,9 @@
 import request from "<api>/request";
 import { SET_ERROR, VERIFY_USER } from "<authActions>/types/types";
 import { API_URL } from "<constants>/constants";
-import { API_URL_DEV } from "../../constants/constants";
 
 export default ({ firstName, lastName, email, password }) => dispatch => {
-  return request(`${API_URL_DEV}/auth/signup`, "POST", {
+  return request(`${API_URL}/auth/signup`, "POST", {
     firstName,
     lastName,
     email,

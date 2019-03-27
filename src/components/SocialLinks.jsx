@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { GOOGLE_URL, FACEBOOK_URL } from "<constants>/constants";
+import {
+  GOOGLE_URL,
+  // GOOGLE_URL_DEV,
+  FACEBOOK_URL
+} from "<constants>/constants";
 import facebook from "<images>/facebook.png";
 import google from "<images>/search.png";
 
