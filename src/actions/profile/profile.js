@@ -48,16 +48,14 @@ const updateProfile = user => dispatch => {
 };
 
 export const updateProfileRequest = user => dispatch => {
+  delete axios.defaults.headers.common.Authorization;
+  const imageData = new FormData();
   if (user.imageFile.name) {
-    const imageData = new FormData();
     imageData.append("file", user.imageFile);
     imageData.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET);
 
-    return axios({
-      method: "POST",
-      url: process.env.CLOUDINARY_API_URL,
-      data: imageData
-    })
+    return axios
+      .post(process.env.CLOUDINARY_API_URL, imageData)
       .then(response => {
         user.imageURL = response.data.secure_url;
         return dispatch(updateProfile(user));
