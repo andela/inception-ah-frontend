@@ -7,6 +7,7 @@ import PasswordRequest from "<auth>/RequestPasswordReset";
 import ResetPassword from "<auth>/ResetPassword";
 import VerifyAccount from "<auth>/VerifyAccount";
 import ProfileWrapper from "<components>/ProfileWrapper";
+import CreateArticle from "<pages>/CreateArticle";
 
 const Routes = {
   default: [
@@ -46,7 +47,12 @@ const Routes = {
     {
       path: "/verification",
       component: VerifyAccount
-    }
+    },
+     {
+      exact: true,
+      path: "/post",
+      component: CreateArticle
+    },
   ],
   secured: []
 };

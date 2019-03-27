@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
 
 export default async (url, method, data = {}) => {
   try {
@@ -10,7 +10,7 @@ export default async (url, method, data = {}) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Request-Methods":
           "PUT, POST, GET, PATCH, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "application/json",
+        "Access-Control-Allow-Headers": "application/json"
       },
       method,
       url,
@@ -22,3 +22,15 @@ export default async (url, method, data = {}) => {
     return Promise.reject(error.response.data.message);
   }
 };
+
+// export default async (url, method, data = {}, isAuthorsHeaven = true) => {
+//   if (isAuthorsHeaven) {
+//     url = `https://inception-ah-backend.herokuapp.com${url}`;
+//   }
+//   try {
+//     const response = await axios({ method, url, data });
+//     return Promise.resolve(response);
+//   } catch (error) {
+//     return Promise.reject(error.response.data.message);
+//   }
+// };

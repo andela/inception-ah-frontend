@@ -9,6 +9,7 @@ class Homepage extends Component {
         <span>
           <Link to="/signin">Log in</Link>
           <Link to="/signup">Sign Up</Link>
+          <Link to="/post">post</Link>
         </span>
       </Fragment>
     );
