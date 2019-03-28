@@ -1,0 +1,16 @@
+@import "./color";
+
+.footer {
+  background-color: $blue;
+  color: $text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+
+@media (max-width: 425px) {
+  .footer {
+    font-size: 0.8rem;
+  }
+}

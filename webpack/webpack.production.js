@@ -8,7 +8,6 @@ const uglifyJS = new UglifyJsPlugin({
 });
 
 module.exports = {
-  devtool: "source-map",
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
