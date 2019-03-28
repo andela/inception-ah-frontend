@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Editor, createEditorState } from "medium-draft";
-import ImageButton from "<components>/mediumDraftButton";
+import ImageButton from "<components>/DraftImageButton";
+import VideoButton from "<components>/DraftVideoButton";
 import draftExporter from "medium-draft/lib/exporter";
 import ArticlePreview from "./ArticlePreview";
 import "<styles>/createArticle.scss";
@@ -86,18 +87,23 @@ class Create extends React.Component {
       {
         title: "Upload Image",
         component: ImageButton
+      },
+      {
+        title: "Upload Video",
+        component: VideoButton
       }
     ];
   };
 
   onPublish = async () => {
     const { title, draftHTML, draftText } = this.state;
+    console.log(localStorage.getItem("imageURL"));
     const data = {
       title,
       content: draftHTML,
       description: draftText.substring(0, 20),
       categoryId: "demo category does not work",
-
+      imageURL: localStorage.getItem("imageURL")
     };
     const payload = {
       data,

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {format} from "date-fns";
+import { format } from "date-fns";
 import Loader from "<common>/Loader";
 import image from "../assets/images/imA.png";
 import "<styles>/ProfileArticleCard.scss";

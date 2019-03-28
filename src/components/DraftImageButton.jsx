@@ -26,9 +26,11 @@ class ImageButton extends React.Component {
       data: formdata
     };
     const res = await request(payLoad, false);
+    const src = res.data.secure_url;
+    sessionStorage.setItem("imageURL", src);
     const appendImage = addNewBlock(this.props.getEditorState(),
-      Block.IMAGE, { src: res.data.secure_url });
-      
+      Block.IMAGE, { src });
+
     this.props.setEditorState(appendImage);
     this.props.close();
   }

@@ -14,14 +14,14 @@ export default async (url, method, data = {}) => {
   }
 };
 
-export const request = async (
-  { url, method, data, headers },
-  isAuthorsHeaven = true
-) => {
+export const request = async ({ url, method, data, headers },
+  isAuthorsHeaven = true) => {
+    console.log(url,data,headers)
   if (isAuthorsHeaven) {
-    url = `https://inception-ah-backend.herokuapp.com${url}`;
+    // url = `https://inception-ah-backend.herokuapp.com${url}`;
+       url = `https://localhost:3000${url}`;
   }
-  try {
+  try { 
     const response = await axios({ method, url, data, headers });
     return Promise.resolve(response);
   } catch (error) {
