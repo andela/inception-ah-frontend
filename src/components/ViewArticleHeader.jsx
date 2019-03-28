@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { PropTypes } from "prop-types";
 import FollowButton from "./common/FollowButton";
-import Image from "<components>/Image";
 import kingsley from "<images>/kingsley.jpg";
 import "<styles>/ViewArticleHeader.scss";
 
@@ -11,7 +10,12 @@ const ViewArticleHeader = props => {
       <h1 className="article-info__title">{props.title}</h1>
       <div className="article-info-container">
         <div className="article-info__summary">
-          <Image src={kingsley} alt="author" />
+          <div className="article-info__img">
+            <img
+              src={kingsley}
+              alt="author"
+            />
+          </div>
           <div className="article-info__author">
             <p className="article-info__author-name">
               <span>By</span> Kingsley Frank-Demesi
@@ -22,7 +26,7 @@ const ViewArticleHeader = props => {
             </p>
           </div>
         </div>
-        <FollowButton />
+        <FollowButton style="follow__action_btn"/>
       </div>
     </Fragment>
   );

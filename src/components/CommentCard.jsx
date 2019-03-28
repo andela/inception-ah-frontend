@@ -23,9 +23,7 @@ class CommentCard extends Component {
           <div className="img-container">
             <img src={this.props.image} />
           </div>
-          <div className="
-          
-          ">
+          <div className="comment-details">
               <div className="comment-detail-header">
                 <div className="comment-author">{this.props.reviewer}</div>
                 <div className="buttons-wrapper">

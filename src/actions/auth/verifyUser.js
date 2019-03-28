@@ -1,21 +1,14 @@
 import request from "<api>/request";
-import { SET_CURRENT_USER, SET_ERROR } from "<authActions>/types/types";
 import { API_URL } from "<constants>/constants";
+import { toast } from "react-toastify";
 
 export default token => dispatch => {
-  return request(`${API_URL}/auth/verification/${token}`, "GET")
+  return request(`${API_URL}/auth/verification${token}`, "GET")
     .then(response => {
       localStorage.setItem("token", response.data.token);
-      dispatch({
-        type: SET_CURRENT_USER
-      });
-      return Promise.resolve(true);
+      return Promise.resolve(response.data.token);
     })
-    .catch(errors => {
-      dispatch({
-        type: SET_ERROR,
-        payload: errors
-      });
-      return Promise.reject(errors);
+    .catch(error => {
+      return Promise.reject(error);
     });
 };

@@ -26,6 +26,7 @@
 .comment-content {
     padding: 10px;
     min-height: 45px;
+    width: 100%;
     border-radius: 5px;
     background-color: #f1f1f1
 }
@@ -47,6 +48,10 @@
 
 .skyblue-color:hover {
     color: #111111;
+}
+
+.comment-content:hover ~ .buttons-wrapper {
+    visibility: visible;
 }
 
 .buttons-wrapper {

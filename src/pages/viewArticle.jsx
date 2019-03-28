@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
 import NavBar from "<components>/NavBar";
 import ArticleFooter from "<components>/ArticleFooter";
-import CategoryLinks from "<components>/CategoryLinks";
-import ViewArticleHeader from "<components>/ViewArticleHeader";
-import CommentHeader from "<components>/CommentHeader";
+import CategoryLinks from "<components>/categoryLinks";
 import CommentContainer from "<components>/CommentContainer";
+import CommentHeader from "<components>/CommentHeader";
+import ViewArticleHeader from "<components>/ViewArticleHeader";
 import "<styles>/ViewArticlesPage.scss";
 
 class ViewArticlePage extends Component {
