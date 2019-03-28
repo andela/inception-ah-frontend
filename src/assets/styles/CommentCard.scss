@@ -50,10 +50,10 @@
     color: #111111;
 }
 
-.comment-content:hover ~ .buttons-wrapper {
-    visibility: visible;
-}
-
 .buttons-wrapper {
     visibility: hidden;
+}
+
+.show-buttons {
+    visibility: visible;
 }

@@ -1,11 +1,12 @@
 import axios from "axios";
 import {
   FETCH_ARTICLE_BY_SLUG,
-  FETCH_ALL_ARTICLES
+  FETCH_ALL_ARTICLES,
+  FETCH_ARTICLES_BY_CATEGORY
 } from "<articleActions>/types/types";
 import { API_URL } from "<constants>/constants";
 import { SET_ERROR } from "<authActions>/types/types";
-import { FETCH_ARTICLES_BY_CATEGORY } from "./types/types";
+// import { FETCH_ARTICLES_BY_CATEGORY } from "./types/types";
 
 export const fetchArticlesBySlug = (slug, history) => dispatch => {
   return axios

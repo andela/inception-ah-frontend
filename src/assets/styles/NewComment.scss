@@ -27,12 +27,12 @@
   background-color: rgb(253, 253, 238);
 }
 
-.editor:focus ~ .button-wrapper {
-  visibility: visible;
+.show-button-wrapper {
+  visibility: visible !important;
 }
 
 .post-comment-btn {
-  background: $background;
+  background: $background !important;
   color: $text;
   padding: .7rem 2rem;
   border-radius: .3rem;
