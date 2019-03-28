@@ -92,12 +92,13 @@ class Create extends React.Component {
 
   onPublish = async () => {
     const { title, draftHTML, draftText } = this.state;
+    console.log(localStorage.getItem("imageURL"));
     const data = {
       title,
       content: draftHTML,
       description: draftText.substring(0, 20),
       categoryId: "demo category does not work",
-
+      imageURL: localStorage.getItem("imageURL")
     };
     const payload = {
       data,
