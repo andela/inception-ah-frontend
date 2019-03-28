@@ -1,0 +1,13 @@
+@import "./mixins";
+
+.comment-textarea {
+    @include commentBox;
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.textarea-container {
+    width: 100%;
+}

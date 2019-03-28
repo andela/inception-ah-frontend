@@ -24,6 +24,35 @@
     justify-content: flex-start;  
 }
 
+.trending-section {
+    margin-top: 50px;
+}
+
+.trending-section h5 {
+    background-color: $blue;
+    color: $text;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.title {
+    border-bottom: 1px solid $black;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.title h5 {
+    margin: 0;
+    padding-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.title span {
+    font-size: 1em;
+    font-weight: 700;
+}
+
 /*
  * style category links
  */
@@ -84,7 +113,6 @@
     .article-container {
         grid-template-columns: 1fr;
     }
-
 }
 
 @media (max-width: 990px) {

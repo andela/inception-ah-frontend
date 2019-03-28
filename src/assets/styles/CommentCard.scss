@@ -1,0 +1,33 @@
+.comment-card {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+
+.img-container {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.comment-card img {
+    border-radius: 50px;
+    width: 100%;
+    height: auto;
+}
+
+.comment-details {
+    width: 100%;
+    margin-top: -20px;
+}
+
+.comment-content {
+    padding: 10px;
+    min-height: 45px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.comment-author {
+    padding-bottom: 3px;
+    font-weight: 700;
+}
