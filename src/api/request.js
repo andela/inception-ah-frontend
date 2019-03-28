@@ -10,10 +10,11 @@ export default async (url, method, data = {}) => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Request-Methods":
           "PUT, POST, GET, PATCH, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "application/json"
+        "Access-Control-Allow-Headers": "application/json",
       },
       method,
       url,
+
       data: { ...data }
     });
     return Promise.resolve(response.data);

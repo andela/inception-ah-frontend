@@ -5,6 +5,20 @@ import kingsley from "<images>/kingsley.jpg";
 import "<styles>/NewComment.scss";
 
 class NewComment extends Component {
+  state = {
+    comment: ""
+  }
+
+  handleClick = () => {
+    console.log("Click handler to save the comment to database");
+  }
+
+  onKeyUpHandler = () => {
+    this.setState({
+      comment: document.querySelector("div[contentEditable]").innerHTML
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -12,8 +26,10 @@ class NewComment extends Component {
           <Image src={kingsley} alt="user"/>
           <div>
             <div className="editor-wrapper">
-              <div contentEditable="true" className="editor" placeholder="Add your comment..."></div>
-              <CommentButton text="Post" style="post-comment-btn"/>
+              <div contentEditable="true" className="editor" onKeyUp={ this.onKeyUpHandler } placeholder="Add your comment..."></div>
+              <div className="button-wrapper">
+                <CommentButton text="Post" style="post-comment-btn" handleClick={ this.handleClick }/>
+              </div>
             </div>
           </div>
         </div>
