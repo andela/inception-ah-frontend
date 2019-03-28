@@ -87,7 +87,7 @@ class EditProfile extends Component {
                       name="middleName"
                       onChange={handleChange}
                       placeholder="Middle name"
-                      value={middleName}
+                      value={middleName || ""}
                     />
                     <Form.Input
                       size="mini"
