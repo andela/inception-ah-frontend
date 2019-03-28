@@ -64,6 +64,12 @@ const Routes = {
       component: NotFound
     }
   ],
-  secured: []
+  secured: [
+    {
+      exact: true,
+      path: "/post",
+      component: CreateArticle
+    },
+  ]
 };
 export default Routes;

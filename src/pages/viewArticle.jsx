@@ -89,6 +89,8 @@ class ViewArticlePage extends Component {
                 </div>
                 <CommentHeader author="Philip Lawson" commentCount={8} />
                 <CommentContainer
+                imageURL={this.props.profile.imageURL}
+                slug={this.state.article.slug}
                   comments={["This is a comment from Lateefat"]}
                 />
               </div>
@@ -111,9 +113,10 @@ ViewArticlePage.propTypes = {
   allArticles: PropTypes.object
 };
 
-const mapStateToProps = ({ article }) => ({
+const mapStateToProps = ({ article, profile }) => ({
   article: article.articleData,
-  allArticles: article.allAvailableArticles
+  allArticles: article.allAvailableArticles,
+  profile: profile.profileData
 });
 
 export default connect(
