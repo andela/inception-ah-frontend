@@ -68,7 +68,6 @@ module.exports = {
   },
   plugins: [
     new cleanWebpackPlugin(),
-    new dotenv(),
     new MiniCssExtractPlugin({
       filename: "style.css"
     }),
@@ -76,6 +75,6 @@ module.exports = {
       template: `${appDirectory}/index.html`,
       filename: `${buildDirectory}/index.html`
     }),
-    new dotenv(),
+    new dotenv()
   ]
 };

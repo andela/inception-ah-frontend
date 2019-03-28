@@ -4,6 +4,6 @@ module.exports = {
     historyApiFallback: true,
     port: 8000,
     publicPath: "/",
-    host: "localhost"
+    host: "localhost",
   }
 };
