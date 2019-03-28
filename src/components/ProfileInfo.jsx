@@ -64,6 +64,7 @@ class ProfileInfo extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.close();
+    this.setState({ isLoading: true });
     this.props.updateProfileRequest(this.state);
   };
 
@@ -86,7 +87,7 @@ class ProfileInfo extends Component {
         mobileNumber: !mobileNumber ? "" : mobileNumber.trim(),
         imageURL,
         biography,
-        middleName,
+        middleName: middleName || "",
         gender,
         id,
         isLoading: false
@@ -95,11 +96,11 @@ class ProfileInfo extends Component {
   }
 
   render() {
-    if (this.state.isLoading) {
+    if (this.state.isLoading || !this.state.firstName) {
       return <Loader />;
     }
 
-    const { imageURL, firstName, biography, lastName } = this.props.profile;
+    const { imageURL, firstName, biography, lastName } = this.state;
 
     return (
       <div className="">

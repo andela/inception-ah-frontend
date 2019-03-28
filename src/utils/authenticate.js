@@ -1,10 +1,8 @@
 import jwtDecode from "jwt-decode";
 
 export default {
-  token: localStorage.getItem("token"),
-
   authenticate() {
-    if (this.token) {
+    if (localStorage.getItem("token")) {
       return true;
     }
     return false;
@@ -14,8 +12,9 @@ export default {
   },
 
   authenticateEditProfile(userId) {
-    if (this.token) {
-      return jwtDecode(this.token).userId === userId;
+    const token = localStorage.getItem("token");
+    if (token) {
+      return jwtDecode(token).userId === userId;
     }
     return false;
   }

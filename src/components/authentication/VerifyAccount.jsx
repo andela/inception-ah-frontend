@@ -1,5 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import jwtDecode from "jwt-decode";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import verifyUserEmail from "<authActions>/verifyUser";
@@ -12,17 +13,19 @@ class VerifyAccount extends Component {
     } = this.props;
     this.props
       .verifyUserEmail(search)
-      .then(() => {
-        this.props.history.push("/profile");
-        toast.success("Your Account is successfully verified");
+      .then(token => {
+        const { userId } = jwtDecode(token);
+        this.props.history.push(`/profile/${userId}`);
+        toast.success("Your Account is successfully Verified");
       })
       .catch(() => {
-        this.props.history.push("/");
+        this.props.history.push("/login");
+        toast.error("We are unable to verify your account");
       });
   }
 
   render() {
-    return null;
+    return <h1>Verifying your account ....</h1>;
   }
 }
 
