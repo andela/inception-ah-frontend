@@ -36,7 +36,7 @@ export const resetPassword = (password, query) => dispatch => {
         type: RESET_PASSWORD,
         payload: response.message
       });
-      return Promise.resolve(response.message);
+      return Promise.resolve(response.data);
     })
     .catch(errors => {
       dispatch({

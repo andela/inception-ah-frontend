@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { format } from "date-fns";
 import Loader from "<common>/Loader";
-import image from "../assets/images/imA.png";
+import image from "../assets/images/politics.jpg";
 import "<styles>/ProfileArticleCard.scss";
 
 class ProfileArticleCard extends Component {
@@ -15,19 +16,20 @@ class ProfileArticleCard extends Component {
       description,
       createdAt,
       readTime,
-      numberOfDislikes,
+      commentCounts,
       numberOfLikes,
-      numberOfReads
+      numberOfReads,
+      imageURL,
     } = this.props.article;
 
     return (
       <div className=" ui card">
         <div className="image">
-          <img src={image} alt="" />
+          <img src={imageURL || image} alt="" />
         </div>
         <div className="content">
-          <a className="header">{title}</a>
-          <div className="description">{description}</div>
+          <p className="header">{title}</p>
+          <div className="description">{description}......</div>
         </div>
         <div className="extra content">
           <div className="meta left floated">
@@ -46,7 +48,8 @@ class ProfileArticleCard extends Component {
               {numberOfLikes}
             </span>
             <span>
-              <i className="comment icon" />0
+              <i className="comment icon" />
+              {commentCounts}
             </span>
           </div>
         </div>
@@ -55,8 +58,7 @@ class ProfileArticleCard extends Component {
   }
 }
 
-// const mapStateToProps = ({ profile }) => ({
-//   userArticles: profile.profileData.author
-// });
-
+ProfileArticleCard.propTypes = {
+  article: PropTypes.object
+};
 export default ProfileArticleCard;

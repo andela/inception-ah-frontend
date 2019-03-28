@@ -2,29 +2,27 @@ import axios from "axios";
 import request from "<api>/request";
 import { SET_ERROR } from "<authActions>/types/types";
 import { API_URL } from "<constants>/constants";
-import {
-  LOAD_PROFILE,
-  UPDATE_PROFILE,
-} from "<profileActions>/types/types";
+import { LOAD_PROFILE, UPDATE_PROFILE } from "<profileActions>/types/types";
 import { toast } from "react-toastify";
 import FormData from "form-data";
 import formatUpdate from "<utils>/update";
 // import { API_URL_DEV } from "../../constants/constants";
 
-export const getProfile = (id, history) => dispatch => {
+export const getProfile = (id) => dispatch => {
   return request(`${API_URL}/users/${id}`, "GET")
     .then(response => {
       dispatch({
         type: LOAD_PROFILE,
         payload: response.data
       });
+      return Promise.resolve(response.data);
     })
     .catch(errors => {
       dispatch({
         type: SET_ERROR,
         payload: errors
       });
-      history.push("/not-found");
+      return Promise.reject(errors);
     });
 };
 

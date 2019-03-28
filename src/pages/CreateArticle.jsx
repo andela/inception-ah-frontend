@@ -75,7 +75,7 @@ class Create extends React.Component {
   onTitleChange = event => {
     const title = event.target.value;
     const titleWordCount = title.split(/\s+/gi).length;
-    const isTitle = titleWordCount > 5 && titleWordCount < 15;
+    const isTitle = titleWordCount > 3 && titleWordCount < 15;
     this.setState(() => {
       return { title, isTitle };
     });

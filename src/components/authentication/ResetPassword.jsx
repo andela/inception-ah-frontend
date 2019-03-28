@@ -28,7 +28,7 @@ class ResetPassword extends Component {
       .resetPassword(this.props.state.password, search)
       .then(response => {
         this.props.clearFields();
-        push("/profile");
+        push(`/profile/${response.id}`);
         toast.success(response, { autoClose: 8000 });
       })
       .catch(error => {

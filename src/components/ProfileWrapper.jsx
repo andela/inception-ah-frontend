@@ -15,10 +15,14 @@ class ProfileWrapper extends Component {
   componentDidMount() {
     const { userId } = this.props.match.params;
     this.setState({ profileStatus: auth.authenticateEditProfile(userId) });
-    this.props.getProfile(userId, this.props.history);
+    this.props
+      .getProfile(userId)
+      .then({})
+      .catch(() => {
+        this.props.history.push("/not-found");
+      });
     // this.props.loadUserArticles(userId);
   }
-
 
   render() {
     if (!this.props.profile) {

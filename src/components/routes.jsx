@@ -9,7 +9,6 @@ import ResetPassword from "<auth>/ResetPassword";
 import VerifyAccount from "<auth>/VerifyAccount";
 import ProfileWrapper from "<components>/ProfileWrapper";
 import CreateArticle from "<pages>/CreateArticle";
-import Sidebar from "<components>/Sidebar";
 import NotFound from "<components>/NotFound";
 
 const Routes = {
@@ -57,11 +56,7 @@ const Routes = {
       component: CreateArticle
     },
     {
-      path: "/article-sidebar",
-      component: Sidebar
-    },
-    {
-      path: "/articles/view",
+      path: "/articles/:slug",
       component: ViewArticlePage
     },
     {
