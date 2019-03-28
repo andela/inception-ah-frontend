@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { Tab } from "semantic-ui-react";
 import FollowCard from "./FollowCard";
 import NoArticles from "./common/NoArticles";
 import NoFollower from "./common/NoFollower";
 import NoFollowing from "./common/NoFollowing";
+import ProfileArticleCard from "../components/ProfileArticleCard";
 import "<styles>/custom.scss";
+import "<styles>/ProfileTabs.scss";
 
 const panes = (userArticles, userFollowers, userFollowing) => [
   {
@@ -14,9 +17,15 @@ const panes = (userArticles, userFollowers, userFollowing) => [
     render: () => (
       <Tab.Pane attached={false}>
         {userArticles.length ? (
-          userArticles.map(article => (
-            <FollowCard key={article.id} article={article} />
-          ))
+          <div className="custom-container">
+            <div className="profile-articles">
+              {userArticles.map(article => (
+                <Link key={article.id} to="/artices">
+                  <ProfileArticleCard article={article} />
+                </Link>
+              ))}
+            </div>
+          </div>
         ) : (
           <NoArticles />
         )}
