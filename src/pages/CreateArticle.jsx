@@ -91,12 +91,13 @@ class Create extends React.Component {
   };
 
   onPublish = async () => {
-    const { title, draftHTML } = this.state;
+    const { title, draftHTML, draftText } = this.state;
     const data = {
       title,
       content: draftHTML,
-      description: "this description does not work for now",
-      categoryId: "demo category does not work"
+      description: draftText.substring(0, 20),
+      categoryId: "demo category does not work",
+
     };
     const payload = {
       data,
