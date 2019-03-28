@@ -1,34 +1,56 @@
+
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import CommentButton from "<components>/CommentButton";
 import Image from "<components>/Image";
 import kingsley from "<images>/kingsley.jpg";
+import { postNewComment } from "<commentActions>/addComment";
 import "<styles>/NewComment.scss";
 
+
 class NewComment extends Component {
-  state = {
-    comment: ""
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false,
+      content: ""
+    };
+    this.editor = React.createRef();
   }
 
   handleClick = () => {
-    console.log("Click handler to save the comment to database");
-  }
+    this.props.postNewComment(this.props.articleSlug, this.state.content, this.props.history);
+  };
 
   onKeyUpHandler = () => {
+    const text = this.editor.innerHTML;
     this.setState({
-      comment: document.querySelector("div[contentEditable]").innerHTML
+      isEditing: !!text,
+      content: text
     });
-  }
+  };
 
   render() {
     return (
       <Fragment>
         <div className="comment-container">
-          <Image src={kingsley} alt="user"/>
+          <Image src={this.props.imageURL || kingsley} alt="user" />
           <div>
             <div className="editor-wrapper">
-              <div contentEditable="true" className="editor" onKeyUp={ this.onKeyUpHandler } placeholder="Add your comment..."></div>
+              <div
+                contentEditable="true"
+                ref={editor => (this.editor = editor)}
+                className="editor"
+                onKeyUp={this.onKeyUpHandler}
+                placeholder="Add your comment..."
+              />
               <div className="button-wrapper">
-                <CommentButton text="Post" style="post-comment-btn" handleClick={ this.handleClick }/>
+                <CommentButton
+                  text="Post"
+                  style={`post-comment-btn ${this.state.isEditing ? "show-button-wrapper" : ""}`}
+                  handleClick={this.handleClick}
+                />
               </div>
             </div>
           </div>
@@ -38,4 +60,5 @@ class NewComment extends Component {
   }
 }
 
-export default NewComment;
+
+export default connect(null, { postNewComment })(withRouter(NewComment));
