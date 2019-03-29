@@ -1,0 +1,25 @@
+@import "./mixins";
+@import "./color";
+
+.comment-textarea {
+    @include commentBox;
+    width: 100%;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+.textarea-container {
+    width: 100%;
+}
+
+
+.post-comment-btn {
+    background: $background;
+    color: $text;
+    padding: .7rem 2rem;
+    border-radius: .3rem;
+    margin-top: 1rem;
+    outline: none;
+    cursor: pointer;
+  }
