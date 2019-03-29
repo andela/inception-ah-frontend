@@ -1,54 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "<styles>/ArticleFooter.scss";
+import ArticleCard from "<components>/ProfileArticleCard";
+import Loader from "<common>/Loader";
 
-const ArticleFooter = () => {
-  return (
-    <div className="article-footer">
-      <div className="article-footer__container">
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed omnis
-          recusandae repellat doloremque, impedit expedita eligendi excepturi
-          porro. Quis esse beatae consequatur alias saepe aliquid voluptatum
-          vitae consectetur recusandae, impedit nesciunt amet suscipit nulla,
-          error unde rerum quae quidem possimus soluta. Facilis cum numquam
-          totam nemo eaque, saepe beatae dolorem. Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Sed omnis recusandae repellat
-          doloremque, impedit expedita eligendi excepturi porro. Quis esse
-          beatae consequatur alias saepe aliquid voluptatum vitae consectetur
-          recusandae, impedit nesciunt amet suscipit nulla, error unde rerum
-          quae quidem possimus soluta. Facilis cum numquam totam nemo eaque,
-          saepe beatae dolorem.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed omnis
-          recusandae repellat doloremque, impedit expedita eligendi excepturi
-          porro. Quis esse beatae consequatur alias saepe aliquid voluptatum
-          vitae consectetur recusandae, impedit nesciunt amet suscipit nulla,
-          error unde rerum quae quidem possimus soluta. Facilis cum numquam
-          totam nemo eaque, saepe beatae dolorem. Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Sed omnis recusandae repellat
-          doloremque, impedit expedita eligendi excepturi porro. Quis esse
-          beatae consequatur alias saepe aliquid voluptatum vitae consectetur
-          recusandae, impedit nesciunt amet suscipit nulla, error unde rerum
-          quae quidem possimus soluta. Facilis cum numquam totam nemo eaque,
-          saepe beatae dolorem.
-        </p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed omnis
-          recusandae repellat doloremque, impedit expedita eligendi excepturi
-          porro. Quis esse beatae consequatur alias saepe aliquid voluptatum
-          vitae consectetur recusandae, impedit nesciunt amet suscipit nulla,
-          error unde rerum quae quidem possimus soluta. Facilis cum numquam
-          totam nemo eaque, saepe beatae dolorem. Lorem ipsum dolor sit, amet
-          consectetur adipisicing elit. Sed omnis recusandae repellat
-          doloremque, impedit expedita eligendi excepturi porro. Quis esse
-          beatae consequatur alias saepe aliquid voluptatum vitae consectetur
-          recusandae, impedit nesciunt amet suscipit nulla, error unde rerum
-          quae quidem possimus soluta. Facilis cum numquam totam nemo eaque,
-          saepe beatae dolorem.
-        </p>
+class ArticleFooter extends Component {
+  render() {
+    if (!this.props.allArticles) {
+      return <Loader />;
+    }
+    return (
+      <div className="article-footer">
+        <div className="article-footer__container">
+          {this.props.allArticles.map(article => (
+            <Link key={article.id} to={`/articles/${article.slug}`}>
+              <ArticleCard article={article} />
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToProps = ({ article }) => ({
+  allArticles: article.allAvailableArticles
+});
+
+ArticleFooter.propTypes = {
+  allArticles: PropTypes.array
 };
-export default ArticleFooter;
+
+export default connect(
+  mapStateToProps,
+  null
+)(ArticleFooter);

@@ -2,12 +2,14 @@ import { RESOURCE_NOT_FOUND } from "<profileActions>/types/types";
 import { SET_ERROR } from "<authActions>/types/types";
 import {
   FETCH_ARTICLE_BY_SLUG,
-  FETCH_ARTICLES_BY_CATEGORY
+  FETCH_ARTICLES_BY_CATEGORY,
+  FETCH_ALL_ARTICLES
 } from "<articleActions>/types/types";
 
 const initialState = {
   articleData: {},
-  errors: []
+  errors: [],
+  allAvailableArticles: []
 };
 
 const articleReducer = (state = initialState, action) => {
@@ -31,6 +33,12 @@ const articleReducer = (state = initialState, action) => {
       return {
         ...state,
         errors: "Request Resource is Not Found"
+      };
+
+    case FETCH_ALL_ARTICLES:
+      return {
+        ...state,
+        allAvailableArticles: action.payload
       };
     default:
       return state;

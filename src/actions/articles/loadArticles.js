@@ -1,5 +1,8 @@
 import axios from "axios";
-import { FETCH_ARTICLE_BY_SLUG } from "<articleActions>/types/types";
+import {
+  FETCH_ARTICLE_BY_SLUG,
+  FETCH_ALL_ARTICLES
+} from "<articleActions>/types/types";
 import { API_URL } from "<constants>/constants";
 import { SET_ERROR } from "<authActions>/types/types";
 import { FETCH_ARTICLES_BY_CATEGORY } from "./types/types";
@@ -15,8 +18,8 @@ export const fetchArticlesBySlug = (slug, history) => dispatch => {
     })
     .catch(errors => {
       if (errors.response) {
-        switch (errors.response) {
-          case "404":
+        switch (errors.response.status) {
+          case 404:
             return history.push("/not-found");
           default:
             dispatch({
@@ -40,8 +43,8 @@ export const fetchArticlesByCategory = (categoryId, history) => dispatch => {
     })
     .catch(errors => {
       if (errors.response) {
-        switch (errors.response) {
-          case "404":
+        switch (errors.response.status) {
+          case 404:
             return history.push("/not-found");
           default:
             dispatch({
@@ -51,5 +54,22 @@ export const fetchArticlesByCategory = (categoryId, history) => dispatch => {
             break;
         }
       }
+    });
+};
+
+export const fetchAllArticles = () => dispatch => {
+  return axios
+    .get(`${API_URL}/articles`)
+    .then(response => {
+      dispatch({
+        type: FETCH_ALL_ARTICLES,
+        payload: response.data.articles
+      });
+    })
+    .catch(errors => {
+      dispatch({
+        type: SET_ERROR,
+        payload: errors.response.message
+      });
     });
 };
