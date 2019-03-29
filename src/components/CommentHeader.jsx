@@ -28,7 +28,7 @@ class CommentHeader extends Component {
             Like this post? Give <b>{this.props.author}</b> a credit!
           </div>
           <div className="buttons-container">
-            <CommentButton icon="comment" text={"8"} handleClick={this.showCommentsHandler} />
+            <CommentButton icon="comment" text={`${this.props.commentCount}`} handleClick={this.showCommentsHandler} />
             <div className="grouped-buttons">
               <CommentButton icon="star outline" handleClick={this.ratingsHandler} />
               <CommentButton icon="heart outline" handleClick={this.likeHandler} />

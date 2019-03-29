@@ -10,7 +10,6 @@ class ProfileArticleCard extends Component {
     if (!this.props.article) {
       return <Loader />;
     }
-    console.log(">>>>", this.props);
     const {
       title,
       description,

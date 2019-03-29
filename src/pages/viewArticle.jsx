@@ -9,7 +9,6 @@ import SideBar from "<components>/Sidebar";
 import CategoryLinks from "<components>/categoryLinks";
 import CommentContainer from "<components>/CommentContainer";
 import ViewSingleArticle from "<components>/ViewSingleArticle";
-import CommentHeader from "<components>/CommentHeader";
 import ViewArticleHeader from "<components>/ViewArticleHeader";
 import {
   fetchArticlesBySlug,
@@ -26,9 +25,7 @@ class ViewArticlePage extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // console.log(this.props);
     if (this.props !== prevProps) {
-      console.log(">>>>>", this.props);
       if (this.props.article) {
         this.setState({ article: this.props.article });
       }
@@ -87,11 +84,9 @@ class ViewArticlePage extends Component {
                     ArticleState={this.state.article.content}
                   />
                 </div>
-                <CommentHeader author="Philip Lawson" commentCount={8} />
                 <CommentContainer
-                imageURL={this.props.profile.imageURL}
-                slug={this.state.article.slug}
-                  comments={["This is a comment from Lateefat"]}
+                  user={this.props.profile}
+                  slug={this.state.article.slug}
                 />
               </div>
             </div>
@@ -104,13 +99,14 @@ class ViewArticlePage extends Component {
 }
 
 ViewArticlePage.propTypes = {
+  profile: PropTypes.object,
   history: PropTypes.object,
   fetchArticlesBySlug: PropTypes.func,
   match: PropTypes.object,
   getProfile: PropTypes.func,
   article: PropTypes.object,
   fetchAllArticles: PropTypes.func,
-  allArticles: PropTypes.object
+  allArticles: PropTypes.array
 };
 
 const mapStateToProps = ({ article, profile }) => ({

@@ -45,8 +45,13 @@ class CommentCard extends Component {
                 <div className="comment-author" onMouseOver={this.handleMouseEnter}>{this.props.reviewer}</div>
                 <div className={classNames("buttons-wrapper", { "show-buttons": this.state.isActive })} onMouseOver={this.handleMouseEnter}>
                   <CommentButton icon="heart outline" handleClick={this.handleLikeComment} style="skyblue-color"/>
-                  <CommentButton icon="pencil" handleClick={this.handleEditComment} style="skyblue-color"/>
-                  <CommentButton icon="trash" handleClick={this.handleDeleteComment} style="skyblue-color"/>
+                  { this.props.isReviewer
+                    ? <Fragment>
+                        <CommentButton icon="pencil" handleClick={this.handleEditComment} style="skyblue-color"/>
+                        <CommentButton icon="trash" handleClick={this.handleDeleteComment} style="skyblue-color"/>
+                      </Fragment>
+                    : ""
+                  }
                 </div>
               </div>
               <div className="comment-content" onMouseOver={this.handleMouseEnter}>{this.props.comment}</div>
@@ -58,9 +63,10 @@ class CommentCard extends Component {
 }
 
 CommentCard.propTypes = {
+  isReviewer: PropTypes.bool,
   image: PropTypes.string,
-  reviewer: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired
+  reviewer: PropTypes.string,
+  comment: PropTypes.string
 };
 
 export default CommentCard;

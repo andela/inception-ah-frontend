@@ -1,13 +1,11 @@
-
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import CommentButton from "<components>/CommentButton";
 import Image from "<components>/Image";
-import kingsley from "<images>/kingsley.jpg";
 import { postNewComment } from "<commentActions>/addComment";
 import "<styles>/NewComment.scss";
-
+import { PropTypes } from "prop-types";
 
 class NewComment extends Component {
   constructor(props) {
@@ -19,10 +17,6 @@ class NewComment extends Component {
     this.editor = React.createRef();
   }
 
-  handleClick = () => {
-    this.props.postNewComment(this.props.articleSlug, this.state.content, this.props.history);
-  };
-
   onKeyUpHandler = () => {
     const text = this.editor.innerHTML;
     this.setState({
@@ -31,11 +25,22 @@ class NewComment extends Component {
     });
   };
 
+  postNewComment = () => {
+    this.props.handleSubmit({
+      content: this.state.content, reviews: { ...this.props.user }
+    });
+    this.editor.innerHTML = "";
+    this.setState({
+      content: "",
+      isEditing: false
+    });
+  };
+
   render() {
     return (
       <Fragment>
         <div className="comment-container">
-          <Image src={this.props.imageURL || kingsley} alt="user" />
+          <Image src={this.props.user.imageURL} alt="user" />
           <div>
             <div className="editor-wrapper">
               <div
@@ -48,8 +53,10 @@ class NewComment extends Component {
               <div className="button-wrapper">
                 <CommentButton
                   text="Post"
-                  style={`post-comment-btn ${this.state.isEditing ? "show-button-wrapper" : ""}`}
-                  handleClick={this.handleClick}
+                  style={`post-comment-btn ${
+                    this.state.isEditing ? "show-button-wrapper" : ""
+                  }`}
+                  handleClick={this.postNewComment}
                 />
               </div>
             </div>
@@ -59,6 +66,12 @@ class NewComment extends Component {
     );
   }
 }
+NewComment.propTypes = {
+  user: PropTypes.object,
+  handleSubmit: PropTypes.func,
+};
 
-
-export default connect(null, { postNewComment })(withRouter(NewComment));
+export default connect(
+  null,
+  { postNewComment }
+)(withRouter(NewComment));

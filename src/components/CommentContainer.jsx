@@ -1,66 +1,82 @@
 import React, { Fragment, Component } from "react";
 import { withRouter } from "react-router-dom";
-import axios from 'axios';
 import { connect } from "react-redux";
+import CommentHeader from "<components>/CommentHeader";
 import CommentCard from "<components>/CommentCard";
 import NewComment from "<components>/NewComment";
-import { PropTypes } from "prop-types";
-import image from "<images>/lateefat.jpg";
-import { fetchAllComments } from "<commentActions>/addComment";
-// import { CommentContainer } from '<components>/ArticlePhoto';
+import PropTypes from "prop-types";
+import { fetchAllComments, postNewComment } from "<commentActions>/addComment";
 
 class CommentContainer extends Component {
   state = {
-    comments: this.props.articleComments,
-    user: {}
+    comments: [],
+    reviewers: []
+  };
+
+  handleSubmit = newComment => {
+    this.props.postNewComment(this.props.slug, newComment.content, this.props.history);
+    this.setState({
+      comments: [
+        ...this.state.comments,
+        newComment
+      ]
+    });
+  };
+
+  componentDidMount() {
+    this.props.fetchAllComments(this.props.slug);
   }
 
-  componentDidUpdate(prevProps){
-    if(prevProps !== this.props && this.props.articleComments){
-      
-      axios.get(`https://inception-ah-backend.herokuapp.com/api/v1/users/${this.props.articleComments[0].userId}`)
-      .then((profile) => {
-        console.log("........",  profile.data.data.imageURL);
-        this.setState({user: profile.data.data})
-      })
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props && this.props.comments) {
+      this.setState({ 
+        comments: this.props.comments,
+      });
     }
-      
   }
-    
-  
 
+  
   render() {
-    console.log('>>>>>>', this.props.articleComments, this.state)
     return (
       <Fragment>
-        {
-          this.state.comments.map((comment, index) => (
-            <CommentCard
-              key={index}
-              comment={comment.content}
-              image={ this.state.user.imageURL || image}
-              reviewer={`${this.state.user.firstName}  ${this.state.user.lastName}`}
-
-            />
-          ))
-        }
-        <NewComment 
-        imageURL={this.props.imageURL}
-        articleSlug={this.props.slug}
-        />
+        <CommentHeader author="Philip Lawson" commentCount={this.state.comments.length} />
+        {this.state.comments.length &&
+          this.state.comments.map((comment, index) => {
+              return (
+                <CommentCard
+                  key={index}
+                  isReviewer={this.props.user.id === comment.reviews.id}
+                  comment={comment.content}
+                  image={comment.reviews.imageURL}
+                  reviewer={`${comment.reviews.firstName} ${
+                    comment.reviews.lastName
+                  }`}
+                />
+              );
+        })}
+        <NewComment user={this.props.user} handleSubmit={this.handleSubmit} />
       </Fragment>
     );
   }
 }
 
-
 CommentContainer.propTypes = {
-  // comments: PropTypes.array.isRequired
+  slug: PropTypes.string.isRequired,
+  fetchAllComments: PropTypes.func.isRequired,
+  imageURL: PropTypes.string,
+  postNewComment: PropTypes.func,
+  articleComments: PropTypes.array,
+  history: PropTypes.object,
+  user: PropTypes.object,
+  comments: PropTypes.array
 };
 
-const mapStateToProps = ({article}) => ({
-  articleComments: article.articleData.articleComments
+const mapStateToProps = ({ article, comment }) => ({
+  articleComments: article.articleData.articleComments,
+  comments: comment.allAvailableComments
 });
 
-
-export default connect(mapStateToProps, null)(CommentContainer);
+export default connect(
+  mapStateToProps,
+  { fetchAllComments, postNewComment }
+)(withRouter(CommentContainer));
