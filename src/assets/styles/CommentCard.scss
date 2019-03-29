@@ -34,6 +34,9 @@
 .comment-author {
     padding-bottom: 3px;
     font-weight: 700;
+    a{
+        text-transform: capitalize
+    }
 }
 
 .comment-detail-header {

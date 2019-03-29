@@ -51,7 +51,6 @@ const Routes = {
       component: VerifyAccount
     },
     {
-      exact: true,
       path: "/post",
       component: CreateArticle
     },
