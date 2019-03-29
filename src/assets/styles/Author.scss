@@ -1,33 +1,23 @@
 .author-container {
   display: flex;
-  margin-left: 20px;
-}
-
-.author-container__title {
-    width: 1000px;
+  align-items: center;
 }
 
 .author-container__image img {
-  border-radius: 100px;
-  width: 100px;
-  height: auto;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
 }
 
 .author-container__details {
   width: 100%;
-  margin-left: 1.2rem;
+  margin-left: 1rem;
 
-  h3 {
-    margin: 0 0 7px 0;
+  h4 {
+    margin-bottom: 0;
   }
 
   p {
-    font-size: 1rem;
-    font-weight: 600;
     margin: 0 0 2px 0;
-  }
-
-  p:last-child {
-    font-size: 1.3rem;
   }
 }

@@ -1,9 +1,8 @@
 import React, { Component, Fragment } from "react";
 import HomePageIntro from "../components/HomePageIntro";
 import { HomePageCards } from "../components/HomePageCards";
-// import Author from "../components/Author";
-// import TopAuthorTitle from "../components/TopAuthorTitle";
-// import TopRatedCard from "../components/TopRatedCard";
+import Author from "../components/Author";
+import TopAuthorTitle from "../components/TopAuthorTitle";
 
 import { HomePageNavBar } from "../components/HomePageNavBar";
 import "<styles>/HomePage.scss";
@@ -20,8 +19,22 @@ class Homepage extends Component {
               <HomePageIntro />
             </div>
           </section>
-          <section className="ui container home-article-cards">
-            <HomePageCards />
+          <section className="home-article-cards">
+            <div className="ui container">
+              <HomePageCards />
+            </div>
+          </section>
+          <section className="top-authors">
+            <div className="ui container">
+              <h3 className="top-authors__header">
+                Top Authors on Authors Haven
+              </h3>
+              <div className="top-authors__details">
+                <Author />
+                <Author />
+                <Author />
+              </div>
+            </div>
           </section>
         </div>
         <Footer />

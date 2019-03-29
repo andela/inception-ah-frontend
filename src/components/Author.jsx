@@ -10,9 +10,8 @@ const Author = () => {
           <img src={Image} />
         </div>
         <div className="author-container__details">
-          <h3>Odinakachukwu Ezeobika</h3>
-          <p>Publications</p>
-          <p>102</p>
+          <h4>Odinakachukwu Ezeobika</h4>
+          <p>Publications (102)</p>
         </div>
       </div>
     </Fragment>

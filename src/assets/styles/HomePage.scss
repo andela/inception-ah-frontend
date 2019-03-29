@@ -3,10 +3,26 @@
   min-height: calc(100vh - 5.3rem);
 }
 
-.home-article-cards {
-    padding: 1rem 0;
+.home-article-cards,
+.top-authors {
+  padding: 1.5rem 0;
 }
 
+.home-article-cards {
+  background-color: whitesmoke !important;
+}
+
+.top-authors__header {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.top-authors__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-gap: 1rem;
+   justify-items: center;
+}
 
 @media screen and (min-width: 652px) {
   .home-page {

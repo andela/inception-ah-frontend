@@ -6,7 +6,11 @@
 
 .homepage-cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(242px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   justify-items: center;
   grid-gap: 10px;
+}
+
+.homepage-card-header {
+  text-align: center;
 }
