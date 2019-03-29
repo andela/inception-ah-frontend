@@ -32,6 +32,7 @@ const ViewArticleHeader = props => {
   );
 };
 ViewArticleHeader.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  imageURL: PropTypes.string
 };
 export default ViewArticleHeader;

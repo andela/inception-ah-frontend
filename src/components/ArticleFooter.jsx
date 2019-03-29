@@ -7,14 +7,14 @@ import ArticleCard from "<components>/ProfileArticleCard";
 import Loader from "<common>/Loader";
 
 class ArticleFooter extends Component {
-  render() {
+  render() {    
     if (!this.props.allArticles) {
       return <Loader />;
     }
     return (
       <div className="article-footer">
         <div className="article-footer__container">
-          {this.props.allArticles.map(article => (
+          {this.props.allArticles.slice(0, 3).map(article => (
             <Link key={article.id} to={`/articles/${article.slug}`}>
               <ArticleCard article={article} />
             </Link>

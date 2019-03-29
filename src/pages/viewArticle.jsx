@@ -107,7 +107,8 @@ ViewArticlePage.propTypes = {
   match: PropTypes.object,
   getProfile: PropTypes.func,
   article: PropTypes.object,
-  fetchAllArticles: PropTypes.func
+  fetchAllArticles: PropTypes.func,
+  allArticles: PropTypes.object
 };
 
 const mapStateToProps = ({ article }) => ({
