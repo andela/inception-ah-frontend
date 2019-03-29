@@ -51,7 +51,7 @@ const Routes = {
       path: "/verification",
       component: VerifyAccount
     },
-     {
+    {
       exact: true,
       path: "/post",
       component: CreateArticle
@@ -60,7 +60,6 @@ const Routes = {
       path: "/article-sidebar",
       component: Sidebar
     },
-    
     {
       path: "/articles/view",
       component: ViewArticlePage
@@ -68,10 +67,8 @@ const Routes = {
     {
       path: "*",
       component: NotFound
-    },
+    }
   ],
-  secured: [
-    
-  ]
+  secured: []
 };
 export default Routes;

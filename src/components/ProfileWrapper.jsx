@@ -19,14 +19,8 @@ class ProfileWrapper extends Component {
     // this.props.loadUserArticles(userId);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props && this.props.profile) {
-      this.setState({ isLoading: false });
-    }
-  }
-
   render() {
-    if (this.state.isLoading) {
+    if (!this.props.profile) {
       return <h1>Loading your Requested Resource...</h1>;
     }
     return <Profile profileStatus={this.state.profileStatus} />;
