@@ -1,19 +1,22 @@
 import axios from "axios";
 import { API_URL } from "<constants>/constants";
 import { SET_ERROR } from "<authActions>/types/types";
-import {ADD_COMMENT, FETCH_ALL_COMMENTS } from "<commentActions>/types/types";
+import { ADD_COMMENT, FETCH_ALL_COMMENTS } from "<commentActions>/types/types";
 // import { FETCH_ARTICLES_BY_CATEGORY } from "./types/types";
 
 export const postNewComment = (slug, content, history) => dispatch => {
   return axios
-    .post(`${API_URL}/articles/${slug}/comments`, {
-            content
-    },
-    {
+    .post(
+      `${API_URL}/articles/${slug}/comments`,
+      {
+        content
+      },
+      {
         headers: {
-        Authorization: window.localStorage.getItem("token"),
+          Authorization: window.localStorage.getItem("token")
+        }
       }
-    })
+    )
     .then(response => {
       dispatch({
         type: ADD_COMMENT,
@@ -36,20 +39,19 @@ export const postNewComment = (slug, content, history) => dispatch => {
     });
 };
 
-
-export const fetchAllComments = (slug) => dispatch => {
-    return axios
-      .get(`${API_URL}/articles/${slug}/comments`)
-      .then(response => {
-        dispatch({
-          type: FETCH_ALL_COMMENTS,
-          payload: response.data.comments
-        });
-      })
-      .catch(errors => {
-        dispatch({
-          type: SET_ERROR,
-          payload: errors.response.message
-        });
+export const fetchAllComments = slug => dispatch => {
+  return axios
+    .get(`${API_URL}/articles/${slug}/comments`)
+    .then(response => {
+      dispatch({
+        type: FETCH_ALL_COMMENTS,
+        payload: response.data.data
       });
-  };
+    })
+    .catch(errors => {
+      dispatch({
+        type: SET_ERROR,
+        payload: errors.response.message
+      });
+    });
+};

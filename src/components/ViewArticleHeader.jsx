@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { PropTypes } from "prop-types";
 import { format } from "date-fns";
+import { Link } from "react-router-dom";
 import FollowButton from "./common/FollowButton";
 import kingsley from "<images>/kingsley.jpg";
 import "<styles>/ViewArticleHeader.scss";
@@ -16,7 +17,9 @@ const ViewArticleHeader = props => {
           </div>
           <div className="article-info__author">
             <p className="article-info__author-name">
-              <span>By</span> {props.fullName}
+              <Link to={`/profile/${props.author.id}`}>
+                <span>By</span> {props.fullName}
+              </Link>
             </p>
             <p className="article-info__date">
               {`${format(props.createdAt, "MMM D, YYYY")}`}

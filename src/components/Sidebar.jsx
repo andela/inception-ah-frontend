@@ -4,7 +4,7 @@ import "<styles>/Sidebar.scss";
 class Sidebar extends Component {
   render() {
     return (
-      <aside className="social-icon-sidebar">
+      <div className="social-icon-sidebar">
         <span className="sidebar-item">
           <i className="bookmark outline icon" />
         </span>
@@ -26,7 +26,7 @@ class Sidebar extends Component {
         <span className="sidebar-item">
           <i className="thumbs down outline icon" />
         </span>
-      </aside>
+      </div>
     );
   }
 }

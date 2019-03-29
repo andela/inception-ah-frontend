@@ -10,7 +10,6 @@ class ProfileArticleCard extends Component {
     if (!this.props.article) {
       return <Loader />;
     }
-    console.log(">>>>", this.props);
     const {
       title,
       description,
@@ -29,7 +28,7 @@ class ProfileArticleCard extends Component {
         </div>
         <div className="content">
           <p className="header">{title}</p>
-          <div className="description">{description}......</div>
+          <div className="description">{description}</div>
         </div>
         <div className="extra content">
           <div className="meta left floated">
