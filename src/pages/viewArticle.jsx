@@ -9,7 +9,6 @@ import SideBar from "<components>/Sidebar";
 import CategoryLinks from "<components>/categoryLinks";
 import CommentContainer from "<components>/CommentContainer";
 import ViewSingleArticle from "<components>/ViewSingleArticle";
-import CommentHeader from "<components>/CommentHeader";
 import ViewArticleHeader from "<components>/ViewArticleHeader";
 import {
   fetchArticlesBySlug,
@@ -26,9 +25,7 @@ class ViewArticlePage extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    // console.log(this.props);
     if (this.props !== prevProps) {
-      console.log(">>>>>", this.props);
       if (this.props.article) {
         this.setState({ article: this.props.article });
       }
@@ -64,7 +61,6 @@ class ViewArticlePage extends Component {
 
     return (
       <Fragment>
-        <SideBar />
         <NavBar />
         <div className="article-main">
           <div className="category-container">
@@ -75,6 +71,7 @@ class ViewArticlePage extends Component {
               <div className="section">
                 <ViewArticleHeader
                   title={this.state.article.title}
+                  author={this.state.article.author}
                   imageURL={this.state.article.author.imageURL}
                   fullName={`${this.state.article.author.firstName} ${
                     this.state.article.author.lastName
@@ -87,11 +84,11 @@ class ViewArticlePage extends Component {
                     ArticleState={this.state.article.content}
                   />
                 </div>
-                <CommentHeader author="Philip Lawson" commentCount={8} />
+                <SideBar />
                 <CommentContainer
-                imageURL={this.props.profile.imageURL}
-                slug={this.state.article.slug}
-                  comments={["This is a comment from Lateefat"]}
+                  author={this.state.article.author}
+                  user={this.props.profile}
+                  slug={this.state.article.slug}
                 />
               </div>
             </div>
@@ -104,13 +101,14 @@ class ViewArticlePage extends Component {
 }
 
 ViewArticlePage.propTypes = {
+  profile: PropTypes.object,
   history: PropTypes.object,
   fetchArticlesBySlug: PropTypes.func,
   match: PropTypes.object,
   getProfile: PropTypes.func,
   article: PropTypes.object,
   fetchAllArticles: PropTypes.func,
-  allArticles: PropTypes.object
+  allArticles: PropTypes.array
 };
 
 const mapStateToProps = ({ article, profile }) => ({

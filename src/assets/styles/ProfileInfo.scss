@@ -10,11 +10,13 @@
 
 .profile-info__img {
   width: 11.5rem;
-  height: auto;
+  height: 11.5rem;
+  // height: auto;
 }
 
 .profile-info__img img {
   width: 100%;
+  height: 100%;
   border-radius: 50%;
 }
 

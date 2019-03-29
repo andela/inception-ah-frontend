@@ -1,16 +1,11 @@
 @import "./color";
 
 .social-icon-sidebar {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
-  width: 60px;
-  position: fixed;
-  top: 180px;
-  left: 10px;
-  z-index: 1000;
+  width: 70%;
+  margin: 1.7rem auto 0 auto;
 }
 
 .sidebar-item {
@@ -47,13 +42,39 @@
 }
 
 .sidebar-item__count {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
 }
 
 .side-item__count-value {
-  margin-left: 5px;
+  margin-left: 2px;
   color: $background;
+}
+
+@media screen and (max-width: 420px) {
+  .social-icon-sidebar {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .social-icon-sidebar {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 60px;
+    position: fixed;
+    top: 180px;
+    left: 10px;
+    z-index: 1000;
+  }
+
+  .sidebar-item__count {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
 }

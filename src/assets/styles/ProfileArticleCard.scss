@@ -16,3 +16,18 @@
     box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.3);
   }
 }
+
+.ui.card > .content > .header, .ui.cards > .card > .content > .header {
+  max-width: 100%;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 47px;
+  text-overflow: ellipsis;
+}
+
+.ui.card > .content > .description, .ui.cards > .card > .content > .description {
+ max-width: 100%;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

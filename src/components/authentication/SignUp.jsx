@@ -56,9 +56,4 @@ SignUpWrapper.propTypes = {
   clearFields: PropTypes.func
 };
 
-export default AuthWrapper(
-  connect(
-    null,
-    { registerNewUser }
-  )(withRouter(SignUpWrapper))
-);
+export default AuthWrapper(connect(null, { registerNewUser })(withRouter(SignUpWrapper)));

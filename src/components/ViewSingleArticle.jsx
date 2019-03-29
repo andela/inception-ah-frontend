@@ -5,13 +5,17 @@ import PropTypes from "prop-types";
 import "medium-draft/lib/index.css";
 import Loader from "<common>/Loader";
 
+import "<styles>/ViewSingleArticle.scss";
+
 class ViewSingleArticle extends React.Component {
   render() {
     if (!this.props.ArticleState) {
       return <Loader />;
     }
     const { ArticleState } = this.props;
-    return <div>{ReactHtmlParser(ArticleState)}</div>;
+    return (
+      <div className="single-article">{ReactHtmlParser(ArticleState)}</div>
+    );
   }
 }
 
