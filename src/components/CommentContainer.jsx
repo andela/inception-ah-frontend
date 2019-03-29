@@ -50,6 +50,7 @@ class CommentContainer extends Component {
                 key={index}
                 isReviewer={this.props.user.id === comment.reviews.id}
                 comment={comment.content}
+                id={comment.reviews.id}
                 image={comment.reviews.imageURL}
                 reviewer={`${comment.reviews.firstName} ${
                   comment.reviews.lastName
@@ -71,7 +72,8 @@ CommentContainer.propTypes = {
   articleComments: PropTypes.array,
   history: PropTypes.object,
   user: PropTypes.object,
-  comments: PropTypes.array
+  comments: PropTypes.array,
+  author: PropTypes.object
 };
 
 const mapStateToProps = ({ article, comment }) => ({

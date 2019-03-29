@@ -2,27 +2,28 @@ import React, { Component } from "react";
 import { Menu, Image, Dropdown } from "semantic-ui-react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import authenticate from "<utils>/authenticate";
+import authenticate, { getUserId } from "<utils>/authenticate";
 import Button from "<components>/CommentButton";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
 import user from "<images>/user.png";
+import { getLoggedInProfile } from "<profileActions>/profile";
 import "<styles>/Notification.scss";
 import "<styles>/custom.scss";
 
 class ProfileDropdown extends Component {
-  trigger = imageURL => (
+  trigger = profile => (
     <span>
-      <Image avatar src={imageURL || user} />
+      <Image avatar src={profile.imageURL || user} />
     </span>
   );
 
-  options = logout => [
+  options = (logout, profile) => [
     {
       key: "profile",
       text: (
-        <Link className="dropdown-color" to="/profile">
+        <Link className="dropdown-color" to={`/profile/${profile.id}`}>
           Profile
         </Link>
       )
@@ -32,22 +33,6 @@ class ProfileDropdown extends Component {
       text: (
         <Link className="dropdown-color" to="/post">
           Write a Post
-        </Link>
-      )
-    },
-    {
-      key: "bookmarks",
-      text: (
-        <Link className="dropdown-color" to="/bookmarks">
-          Bookmarks
-        </Link>
-      )
-    },
-    {
-      key: "stats",
-      text: (
-        <Link className="dropdown-color" to="/stats">
-          Stats
         </Link>
       )
     },
@@ -71,13 +56,19 @@ class ProfileDropdown extends Component {
     this.props.history.push("/signin");
   };
 
+  componentDidMount() {
+    getUserId().then(userId => {
+      this.props.getLoggedInProfile(userId);
+    });
+  }
+
   render() {
     return (
       <Menu.Item position="left">
         <Dropdown
           trigger={
             authenticate.authenticate() ? (
-              this.trigger(this.props.imageURL)
+              this.trigger(this.props.profile)
             ) : (
               <Button
                 text="signin"
@@ -86,7 +77,11 @@ class ProfileDropdown extends Component {
               />
             )
           }
-          options={authenticate.authenticate() ? this.options(this.logOut) : []}
+          options={
+            authenticate.authenticate()
+              ? this.options(this.logOut, this.props.profile)
+              : []
+          }
           pointing="top right"
           icon={null}
         />
@@ -95,16 +90,17 @@ class ProfileDropdown extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  imageURL: store.profile.profileData.imageURL
+const mapStateToProps = ({ profile }) => ({
+  profile: profile.loggedInProfileData
 });
 
 ProfileDropdown.propTypes = {
-  imageURL: PropTypes.string,
-  history: PropTypes.object
+  profile: PropTypes.object,
+  history: PropTypes.object,
+  getLoggedInProfile: PropTypes.func
 };
 
 export default connect(
   mapStateToProps,
-  null
+  { getLoggedInProfile }
 )(withRouter(ProfileDropdown));
