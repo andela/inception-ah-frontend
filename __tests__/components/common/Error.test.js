@@ -1,5 +1,8 @@
 import React from "react";
+import { Enzyme } from "../../setup.config";
 import Error from "../../../src/components/common/Error";
+
+const { shallow } = Enzyme;
 
 describe("Error Component", () => {
   const wrapper = shallow(<Error />);

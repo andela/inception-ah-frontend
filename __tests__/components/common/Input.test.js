@@ -1,4 +1,8 @@
+import React from "react";
+import { Enzyme } from "../../setup.config";
 import Input from "../../../src/components/common/Input";
+
+const { shallow } = Enzyme;
 
 const setup = props => {
   const defaultProps = {

@@ -1,5 +1,8 @@
 import React from "react";
+import { Enzyme } from "../setup.config";
 import Homepage from "../../src/pages/Homepage";
+
+const { shallow } = Enzyme;
 
 describe("HomePage", () => {
   it("should contain h1 element", () => {

@@ -1,5 +1,8 @@
 import React from "react";
+import { Enzyme } from "../setup.config";
 import SocialLink from "../../src/components/SocialLinks";
+
+const { shallow } = Enzyme;
 
 const wrapper = shallow(<SocialLink />);
 

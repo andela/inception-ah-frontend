@@ -12,10 +12,7 @@
     "jest": true
   },
   "globals": {
-    "storeMock": true,
-    "React": true,
-    "shallow": true,
-    "mount": true
+    "storeMock": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

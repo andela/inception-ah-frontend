@@ -1,10 +1,13 @@
+import React from "react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { mount } from "enzyme";
 import BaseRoute from "../../src/components/BaseRoute";
 import HomePage from "../../src/pages/Homepage";
 import ProfilePage from "../../src/pages/ProfilePage";
 import SocialRedirect from "../../src/components/auth/SocialAuth";
+import SignInWrapper from "../../src/components/auth/SignInWrapper";
 import VerifyAccount from "../../src/components/auth/VerifyAccount";
 import store from "../../src/store";
 
@@ -23,10 +26,10 @@ describe("<Routes /> component", () => {
     expect(component.find(HomePage)).toHaveLength(1);
   });
 
-  // it("renders <SignUpWrapper /> component", () => {
-  //   const component = renderRoutes("/signup");
-  //   expect(component.find(SignUpWrapper)).toHaveLength(1);
-  // });
+  it("renders <SignInWrapper /> component", () => {
+    const component = renderRoutes("/signin");
+    expect(component.find(SignInWrapper)).toHaveLength(1);
+  });
 
   it("renders <SocialRedirect /> component", () => {
     const component = renderRoutes("/social-auth");

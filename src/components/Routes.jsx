@@ -1,5 +1,5 @@
 import HomePage from "../pages/Homepage";
-import SignInWrapper from "./auth/signInWrapper";
+import SignInWrapper from "./auth/SignInWrapper";
 import ProfilePage from "../pages/ProfilePage";
 import SocialRedirect from "./auth/SocialAuth";
 import VerifyAccount from "./auth/VerifyAccount";

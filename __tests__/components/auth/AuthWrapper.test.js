@@ -1,5 +1,8 @@
 import React from "react";
+import { Enzyme } from "../../setup.config";
 import { AuthWrapper } from "../../../src/components/auth/AuthWrapper";
+
+const { mount } = Enzyme;
 
 const mockHandleSubmit = () => ({
   preventDefault: jest.fn()
