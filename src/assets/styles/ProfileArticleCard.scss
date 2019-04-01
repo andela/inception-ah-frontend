@@ -1,0 +1,18 @@
+.ui.card > .image > img,
+.ui.cards > .card > .image > img {
+  height: 150px;
+}
+
+.ui.card .meta,
+.ui.cards > .card .meta {
+  font-size: 0.8rem;
+}
+
+.black-icon {
+  color: #646464 !important;
+}
+.ui.card {
+  &:hover {
+    box-shadow: 0px 3px 3px 3px rgba(0, 0, 0, 0.3);
+  }
+}

@@ -1,0 +1,56 @@
+@import "./color";
+
+.comment-container {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  display:  grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 13fr;
+}
+
+.editor-wrapper {
+  .button-wrapper {
+    visibility: hidden;
+  }
+  .editor {
+    padding: .8rem;
+    width: 100%;
+    border-radius: .4rem;
+    outline: none;
+    box-shadow: $card-shadow;
+    border: none;
+    min-height: 60px;
+  }
+}
+
+.editor:focus {
+  background-color: rgb(253, 253, 238);
+}
+
+.editor:focus ~ .button-wrapper {
+  visibility: visible;
+}
+
+.post-comment-btn {
+  background: $background;
+  color: $text;
+  padding: .7rem 2rem;
+  border-radius: .3rem;
+  margin-top: .5rem;
+  outline: none;
+  cursor: pointer;
+}
+
+div:empty::before {
+  color: #8a95a0;
+  padding: .5rem 0rem;
+  font-weight: normal;
+}
+
+div[placeholder]:focus {
+  border: 1px solid transparent
+}
+
+div[placeholder]:not([placeholder=""]):empty::before {
+  content: attr(placeholder);
+}
