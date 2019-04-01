@@ -1,0 +1,59 @@
+@import "./color";
+
+.comment-card {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+
+.img-container {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.comment-card img {
+    border-radius: 50px;
+    width: 100%;
+    height: auto;
+}
+
+.comment-details {
+    width: 100%;
+    margin-left: 1rem;
+    margin-top: -20px;
+}
+
+.comment-content {
+    padding: 10px;
+    min-height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #f1f1f1
+}
+
+.comment-author {
+    padding-bottom: 3px;
+    font-weight: 700;
+}
+
+.comment-detail-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.skyblue-color {
+    font-size: .8rem;
+    color: $background;
+}
+
+.skyblue-color:hover {
+    color: #111111;
+}
+
+.comment-content:hover ~ .buttons-wrapper {
+    visibility: visible;
+}
+
+.buttons-wrapper {
+    visibility: hidden;
+}

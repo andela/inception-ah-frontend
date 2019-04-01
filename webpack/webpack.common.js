@@ -61,6 +61,7 @@ module.exports = {
       "<styles>": path.resolve(__dirname, "../src/assets/styles"),
       "<authActions>": path.resolve(__dirname, "../src/actions/auth"),
       "<profileActions>": path.resolve(__dirname, "../src/actions/profile"),
+      "<articleActions>": path.resolve(__dirname, "../src/actions/articles"),
       "<reducers>": path.resolve(__dirname, "../src/reducers"),
       "<api>": path.resolve(__dirname, "../src/api")
     },

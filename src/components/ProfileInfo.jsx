@@ -96,7 +96,7 @@ class ProfileInfo extends Component {
   }
 
   render() {
-    if (this.state.isLoading || !this.state.firstName) {
+    if (this.state.isLoading) {
       return <Loader />;
     }
 
@@ -141,8 +141,8 @@ ProfileInfo.propTypes = {
   history: PropTypes.object,
   profileStatus: PropTypes.bool
 };
-const mapStateToProps = store => ({
-  profile: store.profile.profileData
+const mapStateToProps = ({ profile }) => ({
+  profile: profile.profileData
 });
 
 export default connect(

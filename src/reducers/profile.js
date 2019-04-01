@@ -7,7 +7,7 @@ import { SET_ERROR } from "<authActions>/types/types";
 
 const initialState = {
   profileData: {},
-  errors: [],
+  errors: []
 };
 
 const profileReducer = (state = initialState, action) => {

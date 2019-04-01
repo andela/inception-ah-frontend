@@ -224,8 +224,6 @@
 //   }
 // }
 
-
-
 .social-link {
   display: flex;
   justify-content: center;
@@ -245,5 +243,28 @@
 
   span {
     color: white;
+  }
+}
+.main {
+  min-height: calc(100vh - 23rem);
+  background-color: red;
+}
+
+// .article-footer {
+// }
+
+.signin-button {
+  border: 1px solid $background !important;
+  padding: 4.6px 10px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+
+  &:hover {
+    background-color: $background;
+    span {
+      color: white;
+    }
   }
 }

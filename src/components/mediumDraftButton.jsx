@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Block, addNewBlock } from "medium-draft";
-import request from "<api>/request";
+import { request } from "<api>/request";
 
 class ImageButton extends React.Component {
   static propTypes = {
@@ -20,10 +20,17 @@ class ImageButton extends React.Component {
     const formdata = new FormData();
     formdata.append("file", imageFile);
     formdata.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET);
-    const res = await request(process.env.CLOUDINARY_API_URL, "POST", formdata, false);
+    const payLoad = {
+      url: process.env.CLOUDINARY_API_URL,
+      method: "POST",
+      data: formdata
+    };
+    const res = await request(payLoad, false);
+    const src = res.data.secure_url;
+    localStorage.setItem("imageURL", src);
     const appendImage = addNewBlock(this.props.getEditorState(),
-      Block.IMAGE, { src: res.data.secure_url });
-      
+      Block.IMAGE, { src });
+
     this.props.setEditorState(appendImage);
     this.props.close();
   }

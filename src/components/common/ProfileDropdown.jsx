@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Menu, Image, Dropdown } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import authenticate from "<utils>/authenticate";
+import Button from "<components>/CommentButton";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 
@@ -17,7 +18,7 @@ class ProfileDropdown extends Component {
     </span>
   );
 
-  options = [
+  options = logout => [
     {
       key: "profile",
       text: (
@@ -53,9 +54,9 @@ class ProfileDropdown extends Component {
     {
       key: "logout",
       text: (
-        <Link onClick={this.logOut} className="dropdown-color" to="/signin">
+        <a onClick={logout} className="dropdown-color">
           Logout
-        </Link>
+        </a>
       )
     }
   ];
@@ -66,12 +67,27 @@ class ProfileDropdown extends Component {
     toast.success("You are now Logged out");
   };
 
+  handleClick = () => {
+    this.props.history.push("/signin");
+  };
+
   render() {
+    console.log(this.props);
     return (
       <Menu.Item position="left">
         <Dropdown
-          trigger={this.trigger(this.props.imageURL)}
-          options={this.options}
+          trigger={
+            authenticate.authenticate() ? (
+              this.trigger(this.props.imageURL)
+            ) : (
+              <Button
+                text="signin"
+                handleClick={this.handleClick}
+                style="signin-button"
+              />
+            )
+          }
+          options={authenticate.authenticate() ? this.options(this.logOut) : []}
           pointing="top right"
           icon={null}
         />
@@ -92,4 +108,4 @@ ProfileDropdown.propTypes = {
 export default connect(
   mapStateToProps,
   null
-)(ProfileDropdown);
+)(withRouter(ProfileDropdown));

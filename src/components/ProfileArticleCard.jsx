@@ -1,37 +1,64 @@
-import React from "react";
-import image from "../assets/images/imA.png";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { format } from "date-fns";
+import Loader from "<common>/Loader";
+import image from "../assets/images/politics.jpg";
 import "<styles>/ProfileArticleCard.scss";
 
-export default () => {
-  return (
-    <div className=" ui card">
-      <div className="image">
-        <img src={image} alt="" />
-      </div>
-      <div className="content">
-        <a className="header">Kristy</a>
-        <div className="description">
-          Kristy is an art director living in New York. Kristy is an art
-          director living in New York.
+class ProfileArticleCard extends Component {
+  render() {
+    if (!this.props.article) {
+      return <Loader />;
+    }
+    console.log(">>>>", this.props);
+    const {
+      title,
+      description,
+      createdAt,
+      readTime,
+      commentCounts,
+      numberOfLikes,
+      numberOfReads,
+      imageURL,
+    } = this.props.article;
+
+    return (
+      <div className=" ui card">
+        <div className="image">
+          <img src={imageURL || image} alt="" />
+        </div>
+        <div className="content">
+          <p className="header">{title}</p>
+          <div className="description">{description}......</div>
+        </div>
+        <div className="extra content">
+          <div className="meta left floated">
+            <span className="date">{`${format(
+              createdAt,
+              "MMM D, YYYY"
+            )}. ${readTime} min`}</span>
+          </div>
+          <div className="meta right floated black-icon">
+            <span>
+              <i className="eye icon" />
+              {numberOfReads}
+            </span>
+            <span>
+              <i className="heart outline icon" />
+              {numberOfLikes}
+            </span>
+            <span>
+              <i className="comment icon" />
+              {commentCounts}
+            </span>
+          </div>
         </div>
       </div>
-      <div className="extra content">
-        <div className="meta left floated">
-          <span className="date">Mar 21, 2019. 7 min</span>
-        </div>
-        <div className="meta right floated black-icon">
-          <span>
-            <i className="eye icon" />2
-          </span>
-          <span>
-            <i className="heart outline icon" />
-            17
-          </span>
-          <span>
-            <i className="comment icon" />3
-          </span>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
+}
+
+ProfileArticleCard.propTypes = {
+  article: PropTypes.object
 };
+export default ProfileArticleCard;

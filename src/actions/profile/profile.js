@@ -8,20 +8,21 @@ import FormData from "form-data";
 import formatUpdate from "<utils>/update";
 // import { API_URL_DEV } from "../../constants/constants";
 
-export const getProfile = id => dispatch => {
+export const getProfile = (id) => dispatch => {
   return request(`${API_URL}/users/${id}`, "GET")
     .then(response => {
       dispatch({
         type: LOAD_PROFILE,
         payload: response.data
       });
+      return Promise.resolve(response.data);
     })
     .catch(errors => {
       dispatch({
         type: SET_ERROR,
         payload: errors
       });
-      toast.error(errors);
+      return Promise.reject(errors);
     });
 };
 

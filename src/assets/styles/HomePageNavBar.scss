@@ -1,0 +1,10 @@
+.homepage-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ui.menu:not(.vertical) .right.item, .ui.menu:not(.vertical) .right.menu {
+    padding: 0;
+}
