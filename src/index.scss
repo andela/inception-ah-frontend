@@ -1,9 +1,12 @@
 // Global Styles
+@import "./assets/styles/color";
+@import "./assets/styles/font";
 * {
   padding: 0;
   margin: 0;
+  font-family: $text-font;
 }
 
 .app {
-  color: #9e2a2b;
+  color: $background-color;
 }
