@@ -7,13 +7,13 @@ class ImageButton extends React.Component {
   static propTypes = {
     setEditorState: PropTypes.func,
     getEditorState: PropTypes.func,
-    close: PropTypes.func,
-  }
+    close: PropTypes.func
+  };
 
   onClick = () => {
     this.input.value = null;
     this.input.click();
-  }
+  };
 
   onChange = async (e) => {
     const imageFile = e.target.files[0];
@@ -28,25 +28,26 @@ class ImageButton extends React.Component {
     const res = await request(payLoad, false);
     const src = res.data.secure_url;
     localStorage.setItem("imageURL", src);
-    const appendImage = addNewBlock(this.props.getEditorState(),
-      Block.IMAGE, { src });
+    const appendImage = addNewBlock(this.props.getEditorState(), Block.IMAGE, { src });
 
     this.props.setEditorState(appendImage);
     this.props.close();
-  }
+  };
 
   render() {
     return (
       <button
         type="button"
         onClick={this.onClick}
-        className="ui icon button basic"
-        title="Add image"
-      >
-        <i className="camera large icon"></i>
+        // className="ui icon button basic"
+        className=""
+        title="Add image">
+        <i className="camera large icon" />
 
         <input
-          ref={(c) => { this.input = c; }}
+          ref={(c) => {
+            this.input = c;
+          }}
           onChange={this.onChange}
           type="file"
           accept="image/*"

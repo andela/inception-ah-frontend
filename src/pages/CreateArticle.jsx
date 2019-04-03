@@ -22,12 +22,14 @@ class Create extends React.Component {
       contentLength: 0,
       draftText: "",
       isArticle: false,
-      isTitle: false
+      isTitle: false,
+      message: null,
+      slug: null
     };
     this.refsEditor = React.createRef();
   }
 
-  onEditorStateChange = editorState => {
+  onEditorStateChange = (editorState) => {
     this.setState(() => {
       const draftHTML = draftExporter(editorState.getCurrentContent());
       const draftText = draftHTML.replace(/<[^>]*>/gi, " ");
@@ -42,28 +44,33 @@ class Create extends React.Component {
     this.refsEditor.current.focus();
   }
 
-  actionComponent = disablePublish => {
+  actionComponent = (disablePublish) => {
+    const { message } = this.state;
     return (
-      <div style={{ textAlign: "right", marginBottom: "13px" }}>
-        <button
-          className="ui micro button basic orange"
-          onClick={this.onPreview}
-        >
-          Preview
-        </button>
-        &nbsp; &nbsp; &nbsp;
-        <button
-          className={`ui micro button basic orange ${disablePublish}`}
-          onClick={this.onPublish}
-        >
-          Publish
-        </button>
+      <div>
+        <div style={{ textAlign: "right", marginBottom: "13px" }}>
+          <span className={`ui positive message compact mini ${message ? "" : "hidden"}`}>
+            <p>{message}</p>
+          </span>
+          &emsp;
+          <button className="ui micro button basic orange" onClick={this.onPublish}>
+            save draft
+          </button>
+          &emsp;
+          <button className="ui micro button basic orange" onClick={this.onPreview}>
+            preview
+          </button>
+          &emsp;
+          <button className={`ui micro button basic orange ${disablePublish}`} onClick={this.onSaveDraft}>
+            publish
+          </button>
+        </div>
       </div>
     );
   };
 
   onPreview = () => {
-    this.setState(state => {
+    this.setState((state) => {
       return { preview: true, draftHTML: state.draftHTML };
     });
   };
@@ -72,10 +79,10 @@ class Create extends React.Component {
     this.setState(() => ({ preview: false }));
   };
 
-  onTitleChange = event => {
+  onTitleChange = (event) => {
     const title = event.target.value;
-    const titleWordCount = title.split(/\s+/gi).length;
-    const isTitle = titleWordCount > 3 && titleWordCount < 15;
+    // const titleWordCount = title.split(/\s+/gi).length;
+    const isTitle = true; // titleWordCount > 3 && titleWordCount < 15;
     this.setState(() => {
       return { title, isTitle };
     });
@@ -91,8 +98,21 @@ class Create extends React.Component {
   };
 
   onPublish = async () => {
+    const { slug } = this.state;
+    await this.onSaveDraft();
+    const payload = {
+      url: `/articles/${slug}/publish`,
+      method: "PUT",
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    };
+    await request(payload);
+    this.props.history.push(`/articles/${slug}`);
+  };
+
+  onSaveDraft = async () => {
     const { title, draftHTML, draftText } = this.state;
-    console.log(localStorage.getItem("imageURL"));
     const data = {
       title,
       content: draftHTML,
@@ -110,7 +130,7 @@ class Create extends React.Component {
     };
     const res = await request(payload);
     const { article } = res.data;
-    this.props.history.push(`/articles/${article.slug}`);
+    this.setState({ slug: article.slug, message: article.message });
   };
 
   validationMessage = (show, message) => {
@@ -121,7 +141,7 @@ class Create extends React.Component {
 
   canPublish = () => {
     const { isArticle, isTitle } = this.state;
-    console.log("Article", isArticle, " ", "title", isTitle);
+    // console.log("Article", isArticle, " ", "title", isTitle);
     return isTitle && isArticle;
   };
 
@@ -131,11 +151,12 @@ class Create extends React.Component {
     if (preview) {
       return (
         <ArticlePreview
-          onPublish={this.onPublish}
+          onSaveDraft={this.onSaveDraft}
           allowPublish={disable}
           onEdit={this.onEdit}
           draft={draftHTML}
           title={title}
+          onPublish={this.onPublish}
         />
       );
     }
@@ -143,26 +164,16 @@ class Create extends React.Component {
     return (
       <Fragment>
         <NavBar />
-        <div className="ui text container" style={{ marginTop: "70px" }}>
+        {/* Add class text to wrap container */}
+        <div className="ui container" style={{ marginTop: "70px" }}>
           {this.actionComponent(disable)}
           <form className="ui form">
             <div className="ui huge input fluid">
-              <input
-                value={this.state.title}
-                className="bold"
-                type={"text"}
-                placeholder="Title"
-                onChange={this.onTitleChange}
-              />
+              <input value={this.state.title} className="bold" type={"text"} placeholder="Title" onChange={this.onTitleChange} />
             </div>
 
             <div className="ui segment">
-              <Editor
-                ref={this.refsEditor}
-                editorState={editorState}
-                onChange={this.onEditorStateChange}
-                sideButtons={this.sideButtons()}
-              />
+              <Editor ref={this.refsEditor} editorState={editorState} onChange={this.onEditorStateChange} sideButtons={this.sideButtons()} />
             </div>
           </form>
         </div>
@@ -175,10 +186,10 @@ Create.propTypes = {
   history: PropTypes.object
 };
 const createArticle = connect(
-  state => {
+  (state) => {
     return { ...state };
   },
-  action => {
+  (action) => {
     return { action };
   }
 )(Create);

@@ -18,6 +18,7 @@ import {
 import { getProfile } from "<profileActions>/profile";
 import "<styles>/ViewArticlesPage.scss";
 import { getUserId } from "<utils>/authenticate";
+import "<styles>/createArticle.scss";
 
 class ViewArticlePage extends Component {
   state = {
