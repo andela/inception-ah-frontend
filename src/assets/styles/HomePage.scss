@@ -1,0 +1,28 @@
+.home-page {
+  padding-top: 100px;
+  min-height: calc(100vh - 5.3rem);
+}
+
+.home-article-cards {
+    padding: 1rem 0;
+}
+
+
+@media screen and (min-width: 652px) {
+  .home-page {
+    min-height: calc(100vh - 3.1rem);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home-page {
+    padding-top: 88px;
+  }
+  .home-page__intro--intro {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("../images/homepage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

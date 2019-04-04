@@ -2,15 +2,43 @@
 
 .footer {
   background-color: $blue;
-  color: $text;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8rem 0;
 }
 
-@media (max-width: 425px) {
-  .footer {
-    font-size: 0.8rem;
+.ui.container.footer-container {
+  color: $text;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+}
+
+.footer--right {
+  a {
+    padding: 0 1rem;
+    color: $text;
+    text-align: center;
+
+    &:not(:last-child) {
+      border-right: 1px solid $text;
+    }
+  }
+
+  a:hover {
+    color: $text;
+  }
+}
+
+@media (max-width: 653px) {
+  .ui.container.footer-container {
+    flex-direction: column;
+  }
+
+  .footer--right {
+    margin-bottom: 0.8rem;
+    order: 1;
+  }
+
+  .footer--left {
+    order: 2;
   }
 }

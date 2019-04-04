@@ -1,0 +1,35 @@
+.ui.card.home-page-article-card {
+  position: static;
+}
+
+.ui.card,
+.ui.cards > .card {
+  width: 329px !important;
+}
+
+.ui.card:first-child {
+  margin-top: 16px;
+}
+
+.ui.card:last-child {
+  margin-bottom: 16px;
+}
+
+.article-icon {
+  color: #ff7a00;
+}
+
+.author-name {
+  font-weight: bold;
+  color: black;
+}
+
+.description-ellipsis {
+  max-width: 100%;
+  white-space: wrap;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 15px;
+  text-overflow: ellipsis;
+  font-family: "Roboto Mono", monospace;
+}

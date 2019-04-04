@@ -1,0 +1,76 @@
+@import "color";
+
+.intro-container {
+  display: flex;
+  justify-content: center;
+
+  button {
+    font-weight: 500;
+    color: $background;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+}
+
+.intro-container__border-bottom {
+  display: flex;
+  border-bottom: 1px solid $black;
+  padding-bottom: 14px;
+  align-items: center;
+}
+
+.intro-container__text-section {
+  h1 {
+    font-size: 2.5rem;
+  }
+  p {
+    font-size: 1.5rem;
+    padding-right: 50px;
+  }
+}
+
+.intro-container__image-section {
+  img {
+    width: 500px;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .intro-container {
+    button {
+      margin: auto;
+      padding: 6px 12px;
+    }
+  }
+
+  .intro-container__text-section {
+    text-align: center;
+    color: $text;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    h1 {
+      font-size: 1.8rem;
+    }
+    p {
+      font-size: 1.5rem;
+      padding-right: 0;
+    }
+  }
+  .intro-container__image-section {
+    img {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .intro-container__text-section {
+    h1 {
+      font-size: 1.7rem;
+    }
+    p {
+      font-size: 1.2em;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.ui.cards,
+.ui.grid > .column:not(.row),
+.ui.grid > .row > .column {
+  position: static !important;
+}
+
+.homepage-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(242px, 1fr));
+  justify-items: center;
+  grid-gap: 10px;
+}

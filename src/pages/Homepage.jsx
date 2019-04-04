@@ -1,21 +1,30 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import HomePageIntro from "../components/HomePageIntro";
+import { HomePageCards } from "../components/HomePageCards";
+// import Author from "../components/Author";
+// import TopAuthorTitle from "../components/TopAuthorTitle";
+// import TopRatedCard from "../components/TopRatedCard";
 
 import { HomePageNavBar } from "../components/HomePageNavBar";
+import "<styles>/HomePage.scss";
+import Footer from "<components>/common/Footer";
 
 class Homepage extends Component {
   render() {
     return (
       <Fragment>
         <HomePageNavBar />
-        <div style={{ height: "1200px" }}>
-          <h1 className="app">Welcome to Authors Haven</h1>
-          <span>
-            <Link to="/signin">Log in</Link>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/post">post</Link>
-          </span>
+        <div className="home-page">
+          <section className="home-page__intro--intro">
+            <div className="ui container">
+              <HomePageIntro />
+            </div>
+          </section>
+          <section className="ui container home-article-cards">
+            <HomePageCards />
+          </section>
         </div>
+        <Footer />
       </Fragment>
     );
   }
