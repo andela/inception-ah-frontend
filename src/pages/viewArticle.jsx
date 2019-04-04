@@ -29,7 +29,6 @@ class ViewArticlePage extends Component {
   componentDidUpdate(prevProps) {
     // console.log(this.props);
     if (this.props !== prevProps) {
-      console.log(">>>>>", this.props);
       if (this.props.article) {
         this.setState({ article: this.props.article });
       }
