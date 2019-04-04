@@ -17,12 +17,16 @@ import {
 import { getProfile } from "<profileActions>/profile";
 import "<styles>/ViewArticlesPage.scss";
 import { getUserId } from "<utils>/authenticate";
-import "<styles>/createArticle.scss";
+import {
+  addArticleReaction,
+  addCommentReaction
+} from "<reactionActions>/addReaction";
 
 class ViewArticlePage extends Component {
   state = {
     article: {},
-    allArticles: []
+    allArticles: [],
+    reRender: null
   };
 
   componentDidUpdate(prevProps) {
@@ -40,6 +44,15 @@ class ViewArticlePage extends Component {
           this.props.history
         );
       }
+      // if (this.props.newArticleReaction) {
+      //   this.props.fetchArticlesBySlug(
+      //     this.props.match.params.slug,
+      //     this.props.history
+      //   );
+      // }
+      // if (this.props.newCommentReaction) {
+      //   // console.log("here");
+      // }
     }
   }
 
@@ -54,6 +67,14 @@ class ViewArticlePage extends Component {
     this.props.fetchArticlesBySlug(slug, this.props.history);
     this.props.fetchAllArticles();
   }
+
+  likeOrDislikeAnArticle = reaction => {
+    this.props.addArticleReaction(this.state.article.slug, reaction);
+  };
+
+  likeOrDislikeAComment = id => {
+    this.props.addCommentReaction(this.props.article.slug, id, true);
+  };
 
   render() {
     if (!this.state.article.content) {
@@ -85,11 +106,24 @@ class ViewArticlePage extends Component {
                     ArticleState={this.state.article.content}
                   />
                 </div>
-                <SideBar />
+                <SideBar
+                  addReaction={reaction =>
+                    this.likeOrDislikeAnArticle(reaction)
+                  }
+                  noOfLikes={
+                    this.props.articleReaction.numberOfLikes ||
+                    this.state.article.numberOfLikes
+                  }
+                  noOfDislikes={
+                    this.props.articleReaction.numberOfDislikes ||
+                    this.state.article.numberOfDislikes
+                  }
+                />
                 <CommentContainer
                   author={this.state.article.author}
                   user={this.props.profile}
                   slug={this.state.article.slug}
+                  addReaction={id => this.likeOrDislikeAComment(id)}
                 />
               </div>
             </div>
@@ -109,16 +143,30 @@ ViewArticlePage.propTypes = {
   getProfile: PropTypes.func,
   article: PropTypes.object,
   fetchAllArticles: PropTypes.func,
-  allArticles: PropTypes.array
+  allArticles: PropTypes.array,
+  addArticleReaction: PropTypes.func,
+  newArticleReaction: PropTypes.bool,
+  articleReaction: PropTypes.object
 };
 
-const mapStateToProps = ({ article, profile }) => ({
+const mapStateToProps = ({ article, profile, reaction }) => ({
   article: article.articleData,
   allArticles: article.allAvailableArticles,
-  profile: profile.profileData
+  profile: profile.profileData,
+  articleReaction: {
+    numberOfLikes: reaction.articleNumberOfLikes,
+    numberOfDislikes: reaction.articleNumberOfDislikes
+  },
+  newCommentReaction: reaction.newCommentReaction
 });
 
 export default connect(
   mapStateToProps,
-  { fetchArticlesBySlug, getProfile, fetchAllArticles }
+  {
+    fetchArticlesBySlug,
+    getProfile,
+    fetchAllArticles,
+    addArticleReaction,
+    addCommentReaction
+  }
 )(withRouter(ViewArticlePage));

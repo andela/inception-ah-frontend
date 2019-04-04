@@ -67,7 +67,7 @@ class CommentCard extends Component {
               >
                 <CommentButton
                   icon="heart outline"
-                  handleClick={this.handleLikeComment}
+                  handleClick={this.props.addReaction}
                   style="skyblue-color"
                   text={"0"}
                 />
@@ -107,7 +107,8 @@ CommentCard.propTypes = {
   image: PropTypes.string,
   reviewer: PropTypes.string,
   comment: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  addReaction: PropTypes.func
 };
 
 export default CommentCard;

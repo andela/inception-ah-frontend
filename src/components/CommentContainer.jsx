@@ -5,6 +5,7 @@ import CommentHeader from "<components>/CommentHeader";
 import CommentCard from "<components>/CommentCard";
 import NewComment from "<components>/NewComment";
 import PropTypes from "prop-types";
+import Loader from "<common>/Loader";
 import { fetchAllComments, postNewComment } from "<commentActions>/addComment";
 
 class CommentContainer extends Component {
@@ -37,6 +38,10 @@ class CommentContainer extends Component {
   }
 
   render() {
+    if (!this.state.comments) {
+      return <Loader />;
+    }
+    // console.log(">>>>>", this.state.comments);
     return (
       <Fragment>
         <CommentHeader
@@ -50,6 +55,7 @@ class CommentContainer extends Component {
                 key={index}
                 isReviewer={this.props.user.id === comment.reviews.id}
                 comment={comment.content}
+                addReaction={() => this.props.addReaction(comment.id)}
                 id={comment.reviews.id}
                 image={comment.reviews.imageURL}
                 reviewer={`${comment.reviews.firstName} ${
@@ -73,7 +79,8 @@ CommentContainer.propTypes = {
   history: PropTypes.object,
   user: PropTypes.object,
   comments: PropTypes.array,
-  author: PropTypes.object
+  author: PropTypes.object,
+  addReaction: PropTypes.func
 };
 
 const mapStateToProps = ({ article, comment }) => ({

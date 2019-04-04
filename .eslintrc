@@ -35,6 +35,7 @@
     "import/no-unresolved": 0,
     "no-console": 0,
     "no-return-assign": 0,
+    "implicit-arrow-linebreak": 0,
     "operator-linebreak": 0,
     "object-curly-newline": 0,
     "no-extra-parens": 0,
