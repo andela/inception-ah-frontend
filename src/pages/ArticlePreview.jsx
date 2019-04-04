@@ -13,16 +13,21 @@ class ArticlePreview extends React.Component {
     onPublish: PropTypes.func,
     title: PropTypes.string,
     draft: PropTypes.string,
-    onSaveDraft: PropTypes.func
+    onSaveDraft: PropTypes.func,
+    message: PropTypes.string
   };
 
   render() {
-    const { allowPublish } = this.props;
+    const { allowPublish, message } = this.props;
     return (
       <Fragment>
         <NavBar />
         <div className="ui container" style={{ marginTop: "70px" }}>
           <div style={{ textAlign: "right", marginBottom: "13px" }}>
+             <span className={`ui positive message compact tiny ${message ? "" : "hide"}`}>
+                <p>{"saved"}</p>
+              </span>
+            &emsp;
             <button className="ui micro button basic orange" onClick={this.props.onSaveDraft}>
               save draft
             </button>

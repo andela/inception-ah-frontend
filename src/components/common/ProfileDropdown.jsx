@@ -72,7 +72,6 @@ class ProfileDropdown extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <Menu.Item position="left">
         <Dropdown

@@ -1,11 +1,38 @@
-.micro{
-    padding: 6px 12px !important; 
+.micro {
+  padding: 6px 12px !important;
 }
 
-.bold{
-    font-weight: bold;
+.bold {
+  font-weight: bold;
 }
-.md-block-image{
-    text-align: center !important;
+.md-block-image {
+  text-align: center !important;
+}
+.message {
+  margin: 0px !important;
+  padding: 6px 10px !important;
+}
+.hide {
+  visibility: hidden;
 }
 
+.create{
+//   background-image: url() !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+.ui.segment:last-child {
+    outline: none;
+    shape-outside: none;
+    border: none;
+    background: none;
+}
+.md-RichEditor-root {
+    background: none !important;
+}
+input{
+    background: none !important;
+}
