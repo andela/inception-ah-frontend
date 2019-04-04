@@ -1,8 +1,7 @@
 import { RESOURCE_NOT_FOUND } from "<profileActions>/types/types";
 import { SET_ERROR } from "<authActions>/types/types";
-import {
-  ADD_COMMENT, FETCH_ALL_COMMENTS
-} from "<commentActions>/types/types";
+import { ADD_COMMENT, FETCH_ALL_COMMENTS } from "<commentActions>/types/types";
+import { ADD_COMMENT_REACTION } from "<reactionActions>/types/types";
 
 const initialState = {
   commentData: {},
@@ -15,7 +14,7 @@ const commentReducer = (state = initialState, action) => {
     case ADD_COMMENT:
       return {
         ...state,
-        commentData: action.payload
+        allAvailableComments: [...state.allAvailableComments, action.payload]
       };
     case FETCH_ALL_COMMENTS:
       return {
@@ -32,6 +31,25 @@ const commentReducer = (state = initialState, action) => {
         ...state,
         errors: "Request Resource is Not Found"
       };
+    case ADD_COMMENT_REACTION: {
+      const { commentNumberOfLikes, commentId } = action.payload;
+
+      const newState = [...state.allAvailableComments];
+      const singleComment = newState.find(comment => comment.id === commentId);
+      const commentIndex = newState.indexOf(singleComment);
+
+      const newComment = {
+        ...singleComment,
+        numberOfLikes: commentNumberOfLikes
+      };
+
+      newState[commentIndex] = newComment;
+
+      return {
+        ...state,
+        allAvailableComments: [...newState]
+      };
+    }
     default:
       return state;
   }

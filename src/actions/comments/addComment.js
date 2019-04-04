@@ -49,9 +49,19 @@ export const fetchAllComments = slug => dispatch => {
       });
     })
     .catch(errors => {
-      dispatch({
-        type: SET_ERROR,
-        payload: errors.response.message
-      });
+      // console.log(">?????????/", errors.response);
+      switch (errors.response.data.message) {
+        case "No Comments found": {
+          return dispatch({
+            type: FETCH_ALL_COMMENTS,
+            payload: []
+          });
+        }
+        default:
+          return dispatch({
+            type: SET_ERROR,
+            payload: errors.response.message
+          });
+      }
     });
 };
