@@ -7,7 +7,11 @@ import EditProfileForm from "./EditProfileForm";
 import "<styles>/ProfileInfo.scss";
 import user from "<images>/user.png";
 import Loader from "./common/Loader";
-import { updateProfileRequest } from "<profileActions>/profile";
+import {
+  updateProfileRequest,
+  followUser,
+  verifyFollowUser
+} from "<profileActions>/profile";
 import checkImageFile from "<utils>/checkImageType";
 
 class ProfileInfo extends Component {
@@ -95,6 +99,13 @@ class ProfileInfo extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.verifyFollowUser(this.props.match.params.userId);
+  }
+
+  followUser = () => {
+    this.props.followUser(this.props.match.params.userId);
+  };
   render() {
     if (this.state.isLoading || !this.state.firstName) {
       return <Loader />;
@@ -122,10 +133,12 @@ class ProfileInfo extends Component {
                 profile={this.state}
                 close={this.close}
                 show={this.show}
+                status={this.props.status}
                 profileStatus={this.props.profileStatus}
                 open={this.state.open}
                 submitUpdateProfile={this.handleSubmit}
                 handleImageChange={this.handleImageChange}
+                followUser={this.followUser}
               />
             </div>
           </div>
@@ -142,10 +155,11 @@ ProfileInfo.propTypes = {
   profileStatus: PropTypes.bool
 };
 const mapStateToProps = ({ profile }) => ({
-  profile: profile.profileData
+  profile: profile.profileData,
+  status: profile.followStatus
 });
 
 export default connect(
   mapStateToProps,
-  { updateProfileRequest }
+  { updateProfileRequest, followUser, verifyFollowUser }
 )(withRouter(ProfileInfo));

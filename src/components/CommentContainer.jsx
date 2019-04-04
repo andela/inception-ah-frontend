@@ -5,6 +5,7 @@ import CommentHeader from "<components>/CommentHeader";
 import CommentCard from "<components>/CommentCard";
 import NewComment from "<components>/NewComment";
 import PropTypes from "prop-types";
+import Loader from "<common>/Loader";
 import { fetchAllComments, postNewComment } from "<commentActions>/addComment";
 
 class CommentContainer extends Component {
@@ -15,28 +16,30 @@ class CommentContainer extends Component {
 
   handleSubmit = newComment => {
     this.props.postNewComment(
-      this.props.slug,
+      this.props.match.params.slug,
       newComment.content,
       this.props.history
     );
-    this.setState({
-      comments: [...this.state.comments, newComment]
-    });
   };
 
   componentDidMount() {
-    this.props.fetchAllComments(this.props.slug);
+    this.props.fetchAllComments(this.props.match.params.slug);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props && this.props.comments) {
-      this.setState({
-        comments: this.props.comments
-      });
+    if (prevProps !== this.props) {
+      if (this.props.comments) {
+        this.setState({
+          comments: this.props.comments
+        });
+      }
     }
   }
 
   render() {
+    if (!this.state.comments) {
+      return <Loader />;
+    }
     return (
       <Fragment>
         <CommentHeader
@@ -48,8 +51,16 @@ class CommentContainer extends Component {
             return (
               <CommentCard
                 key={index}
-                isReviewer={this.props.user.id === comment.reviews.id}
+                isReviewer={
+                  this.props.user.id === comment.reviews.id
+                }
+                numberOfLikes={
+                  comment.numberOfLikes
+                }
                 comment={comment.content}
+                addReaction={() =>
+                  this.props.addReaction(comment.id)
+                }
                 id={comment.reviews.id}
                 image={comment.reviews.imageURL}
                 reviewer={`${comment.reviews.firstName} ${
@@ -65,7 +76,6 @@ class CommentContainer extends Component {
 }
 
 CommentContainer.propTypes = {
-  slug: PropTypes.string.isRequired,
   fetchAllComments: PropTypes.func.isRequired,
   imageURL: PropTypes.string,
   postNewComment: PropTypes.func,
@@ -73,12 +83,15 @@ CommentContainer.propTypes = {
   history: PropTypes.object,
   user: PropTypes.object,
   comments: PropTypes.array,
-  author: PropTypes.object
+  author: PropTypes.object,
+  addReaction: PropTypes.func,
+  match: PropTypes.object,
+  commentNumberOfLikes: PropTypes.number
 };
 
 const mapStateToProps = ({ article, comment }) => ({
   articleComments: article.articleData.articleComments,
-  comments: comment.allAvailableComments
+  comments: comment.allAvailableComments,
 });
 
 export default connect(

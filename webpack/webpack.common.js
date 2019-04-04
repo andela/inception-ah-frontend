@@ -63,6 +63,7 @@ module.exports = {
       "<profileActions>": path.resolve(__dirname, "../src/actions/profile"),
       "<articleActions>": path.resolve(__dirname, "../src/actions/articles"),
       "<commentActions>": path.resolve(__dirname, "../src/actions/comments"),
+      "<reactionActions>": path.resolve(__dirname, "../src/actions/reactions"),
       "<reducers>": path.resolve(__dirname, "../src/reducers"),
       "<api>": path.resolve(__dirname, "../src/api")
     },

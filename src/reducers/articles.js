@@ -6,6 +6,8 @@ import {
   FETCH_ALL_ARTICLES
 } from "<articleActions>/types/types";
 
+import { ADD_ARTICLE_REACTION } from "<reactionActions>/types/types";
+
 const initialState = {
   articleData: {},
   errors: [],
@@ -34,6 +36,20 @@ const articleReducer = (state = initialState, action) => {
         ...state,
         errors: "Request Resource is Not Found"
       };
+
+    case ADD_ARTICLE_REACTION: {
+      const { articleNumberOfLikes, articleNumberOfDislikes } = action.payload;
+      const newState = {
+        ...state.articleData,
+        numberOfLikes: articleNumberOfLikes,
+        numberOfDislikes: articleNumberOfDislikes
+      };
+
+      return {
+        ...state,
+        articleData: { ...newState }
+      };
+    }
 
     case FETCH_ALL_ARTICLES:
       return {

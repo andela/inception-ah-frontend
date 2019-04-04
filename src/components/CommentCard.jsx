@@ -11,10 +11,6 @@ class CommentCard extends Component {
     isActive: false
   };
 
-  handleLikeComment = () => {
-    console.log("This is a button to handle like on a comment");
-  };
-
   handleEditComment = () => {
     console.log("This is a button to handle edit on a comment");
   };
@@ -67,9 +63,9 @@ class CommentCard extends Component {
               >
                 <CommentButton
                   icon="heart outline"
-                  handleClick={this.handleLikeComment}
+                  handleClick={this.props.addReaction}
                   style="skyblue-color"
-                  text={"0"}
+                  text={`${this.props.numberOfLikes}`}
                 />
                 {this.props.isReviewer ? (
                   <Fragment>
@@ -107,7 +103,9 @@ CommentCard.propTypes = {
   image: PropTypes.string,
   reviewer: PropTypes.string,
   comment: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  addReaction: PropTypes.func,
+  numberOfLikes: PropTypes.number
 };
 
 export default CommentCard;

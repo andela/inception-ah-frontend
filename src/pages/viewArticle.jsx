@@ -17,11 +17,16 @@ import {
 import { getProfile } from "<profileActions>/profile";
 import "<styles>/ViewArticlesPage.scss";
 import { getUserId } from "<utils>/authenticate";
+import {
+  addArticleReaction,
+  addCommentReaction
+} from "<reactionActions>/addReaction";
 
 class ViewArticlePage extends Component {
   state = {
     article: {},
-    allArticles: []
+    allArticles: [],
+    reRender: null
   };
 
   componentDidUpdate(prevProps) {
@@ -54,11 +59,19 @@ class ViewArticlePage extends Component {
     this.props.fetchAllArticles();
   }
 
+  likeOrDislikeAnArticle = reaction => {
+    this.props.addArticleReaction(this.state.article.slug, reaction);
+  };
+
+  likeOrDislikeAComment = id => {
+    this.props.addCommentReaction(this.props.article.slug, id, true);
+  };
+
   render() {
     if (!this.state.article.content) {
       return <Loader />;
     }
-
+    // console.log(">>>>!!!!!!!", this.props);
     return (
       <Fragment>
         <NavBar />
@@ -84,11 +97,21 @@ class ViewArticlePage extends Component {
                     ArticleState={this.state.article.content}
                   />
                 </div>
-                <SideBar />
+                <SideBar
+                  addReaction={reaction =>
+                    this.likeOrDislikeAnArticle(reaction)
+                  }
+                  noOfLikes={
+                    this.state.article.numberOfLikes
+                  }
+                  noOfDislikes={
+                    this.state.article.numberOfDislikes
+                  }
+                />
                 <CommentContainer
                   author={this.state.article.author}
                   user={this.props.profile}
-                  slug={this.state.article.slug}
+                  addReaction={id => this.likeOrDislikeAComment(id)}
                 />
               </div>
             </div>
@@ -108,16 +131,26 @@ ViewArticlePage.propTypes = {
   getProfile: PropTypes.func,
   article: PropTypes.object,
   fetchAllArticles: PropTypes.func,
-  allArticles: PropTypes.array
+  allArticles: PropTypes.array,
+  addArticleReaction: PropTypes.func,
+  newArticleReaction: PropTypes.bool,
+  articleReaction: PropTypes.object,
+  addCommentReaction: PropTypes.func
 };
 
 const mapStateToProps = ({ article, profile }) => ({
   article: article.articleData,
   allArticles: article.allAvailableArticles,
-  profile: profile.profileData
+  profile: profile.profileData,
 });
 
 export default connect(
   mapStateToProps,
-  { fetchArticlesBySlug, getProfile, fetchAllArticles }
+  {
+    fetchArticlesBySlug,
+    getProfile,
+    fetchAllArticles,
+    addArticleReaction,
+    addCommentReaction
+  }
 )(withRouter(ViewArticlePage));

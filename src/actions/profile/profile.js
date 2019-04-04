@@ -5,7 +5,9 @@ import { API_URL } from "<constants>/constants";
 import {
   LOAD_PROFILE,
   UPDATE_PROFILE,
-  LOAD_LOGGED_IN_PROFILE
+  LOAD_LOGGED_IN_PROFILE,
+  VERIFY_FOLLOW_USER,
+  FOLLOW_USER
 } from "<profileActions>/types/types";
 import { toast } from "react-toastify";
 import FormData from "form-data";
@@ -89,4 +91,51 @@ export const updateProfileRequest = user => dispatch => {
       });
   }
   return dispatch(updateProfile(user));
+};
+
+export const verifyFollowUser = id => dispatch => {
+  return axios
+    .get(`${API_URL}/profiles/follower/status/${id}`, {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    })
+    .then(response => {
+      dispatch({
+        type: VERIFY_FOLLOW_USER,
+        payload: response.data.status
+      });
+      return Promise.resolve(response.status);
+    })
+    .catch(errors => {
+      dispatch({
+        type: SET_ERROR,
+        payload: errors
+      });
+      return Promise.reject(errors);
+    });
+};
+
+export const followUser = id => dispatch => {
+  return axios({
+    method: "POST",
+    url: `${API_URL}/profiles/${id}/follow`,
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+  })
+    .then(response => {
+      dispatch({
+        type: FOLLOW_USER,
+        payload: response.data.status
+      });
+      return Promise.resolve(response.status);
+    })
+    .catch(errors => {
+      dispatch({
+        type: SET_ERROR,
+        payload: errors
+      });
+      return Promise.reject(errors);
+    });
 };

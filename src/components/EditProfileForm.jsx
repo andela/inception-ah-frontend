@@ -19,8 +19,10 @@ class EditProfile extends Component {
         imageURL
       },
       handleChange,
+      followUser,
       submitUpdateProfile,
-      handleImageChange
+      handleImageChange,
+      status
     } = this.props;
     const genderOptions = [
       { label: "Male", value: "male" },
@@ -29,13 +31,15 @@ class EditProfile extends Component {
     ];
 
     const FollowButton = () => (
-      <Button className="profile-info__action_btn">Follow</Button>
+      <Button className="profile-info__action_btn" onClick={followUser}>
+        {status ? "Unfollow" : "Follow"}
+      </Button>
     );
 
     return (
       <div>
         {!this.props.profileStatus ? (
-          <FollowButton />
+          <FollowButton status="follow" />
         ) : (
           <Fragment>
             <Button
