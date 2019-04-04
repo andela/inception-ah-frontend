@@ -9,6 +9,14 @@
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   justify-items: center;
   grid-gap: 10px;
+
+  // :first-child{
+  //   margin-top: 1rem !important;
+  // }
+
+  // :last-child {
+  //   margin-bottom: 1rem !important;
+  // }
 }
 
 .homepage-card-header {

@@ -1,48 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "<styles>/HomePageArticleCard.scss";
+import { format } from "date-fns";
 import user from "<images>/user.png";
-import woman from "<images>/woman.jpg";
+import politics from "<images>/politics.jpg";
 
-export const HomePageArticleCard = () => (
+export const HomePageArticleCard = ({ article }) => (
   <div className="ui card home-page-article-card">
     <div className="content">
       <div className="right floated meta">
         <span className="article-icon">
           <i className="heart outline icon" />
-          17
+          {article.numberOfLikes}
         </span>
         <span className="article-icon">
-          <i className="eye icon" />3
+          <i className="comment outline icon " />{article.commentCounts}
         </span>
       </div>
-      <img className="ui avatar image" src={user} alt="" />
-      <a href="#hh" className="author-name">
-        Joshua Obasaju
-      </a>
+      <img
+        className="ui avatar image"
+        src={article.author.imageURL || user}
+        alt=""
+      />
+      <Link to="/#" className="author-name">
+        {`${article.author.firstName} ${article.author.lastName}`}
+      </Link>
     </div>
     <div className="image">
-      <img src={woman} alt="" />
+      <img src={article.imageURL || politics} alt="" />
     </div>
     <div className="content right floated">
-      <Link to="/#" className="header">
-        In the Days of the Simulations and Apprenticeship When the World was
-        Worldly
+      <Link to={`/articles/${article.slug}`} className="header">
+        {article.title}
       </Link>
       <div className="description description-ellipsis">
-        Whats in the brain, that ink may character, Which hath not figurd to
-        thee my true spirit? Whats new to speak, what now to register, That may
-        express my love, or thy dear merit? Nothing, sweet boy; but yet, like
-        prayers divine, I must each day say oer the very same; Counting no old
-        thing old, thou mine, I thine, Even as when first I hallowd thy fair
-        name. So that eternal love in loves fresh case, Weighs not the dust and
-        injury of age,
+        {article.description}
       </div>
     </div>
     <div className="extra">
       <div className="extra content">
-        <span className="right floated">March 28, 2019</span>
-        <span>5 min read</span>
+        <span className="right floated">{`${format(
+          article.createdAt,
+          "MMM D, YYYY"
+        )}.`}</span>
+        <span>{article.readTime} min read</span>
       </div>
     </div>
   </div>
