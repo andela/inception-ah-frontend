@@ -17,6 +17,7 @@ class Create extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      imageURL: null,
       preview: false,
       editorState: createEditorState(),
       draftHTML: "",
@@ -24,10 +25,11 @@ class Create extends React.Component {
       contentLength: 0,
       draftText: "",
       isArticle: false,
-      isTitle: false,
+      isTitle: true,
       message: null,
       slug: null,
-      saveTimeout: null
+      saveTimeout: null,
+      token: localStorage.getItem("token"),
     };
     this.refsEditor = React.createRef();
   }
@@ -43,7 +45,7 @@ class Create extends React.Component {
       const draftWordCount = draftText.split(/\s+/gi).length;
 
       const saveTimeout = setTimeout(() => {
-        this.saveDraft(true);
+        this.onSaveDraft(true);
       }, 10000);
       const isArticle = draftWordCount > 20 && contentLength > 199;
       return { saveTimeout, editorState, draftHTML, contentLength, draftText, isArticle };
@@ -55,15 +57,16 @@ class Create extends React.Component {
       url: "/api/v1/articles/draft",
       method: "GET",
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: this.state.token,
       }
     };
     try {
       const response = await request(payload);
       if (response.status === 200) {
-        const { slug, content, title } = response.data.article;
+        const { slug, content, title, imageURL } = response.data.article;
+        console.log(imageURL)
         const editorState = createEditorState(convertToRaw(mediumDraftImporter(content)));
-        this.setState({ slug, draftHTML: content, title, editorState });
+        this.setState({ slug, draftHTML: content, title, editorState, imageURL });
       }
     } catch (e) {
       console.log("Cannot get draft Article");
@@ -94,7 +97,19 @@ class Create extends React.Component {
     });
   };
 
+  /**
+   * when a new Image is uploaded and there was no imageURL set pre to this event,
+   * the url will be captured by this function. see
+   * @component/mediumDraffButton for implementation
+   * set image is attached as static property to the editor file button component
+   * */
+
+  setImage = (imageURL) => {
+    if (!this.state.imageURL) this.setState({ imageURL });
+  };
+
   sideButtons = () => {
+    ImageButton.setImage = this.setImage;
     return [
       {
         title: "Upload Image",
@@ -104,18 +119,18 @@ class Create extends React.Component {
   };
 
   onPublish = async () => {
-    let { slug } = this.state;
+    const { slug, token } = this.state;
     if (!slug) {
       // if after onSaveDraft publish will be called, pass false to avoid
       // displaying the saved Alert
-      await this.saveDraft.call(this, false);
+      await this.onSaveDraft.call(this, false);
       slug = this.state.slug;
     }
     const payload = {
       url: `/api/v1/articles/${slug}/publish`,
       method: "PUT",
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: token,
       }
     };
     try {
@@ -126,14 +141,14 @@ class Create extends React.Component {
     }
   };
 
-  saveDraft = async (noAlert) => {
-    const { title, draftHTML, draftText, slug } = this.state;
+  onSaveDraft = async (noAlert) => {
+    const { title, draftHTML, token, draftText, slug, imageURL } = this.state;
     const data = {
       title,
       content: draftHTML,
       description: draftText.substring(0, 20),
       categoryId: "demo category does not work",
-      imageURL: sessionStorage.getItem("imageURL"),
+      imageURL,
       slug
     };
     const payload = {
@@ -141,7 +156,7 @@ class Create extends React.Component {
       url: slug ? `/api/v1/articles/${slug}` : "/api/v1/articles",
       method: slug ? "PUT" : "POST",
       headers: {
-        Authorization: localStorage.getItem("token")
+        Authorization: token,
       }
     };
     const res = await request(payload);
@@ -169,7 +184,6 @@ class Create extends React.Component {
 
   canPublish = () => {
     const { isArticle, isTitle } = this.state;
-    // console.log("Article", isArticle, " ", "title", isTitle);
     return isTitle && isArticle;
   };
 
@@ -178,11 +192,11 @@ class Create extends React.Component {
     return (
       <div className="create">
         <div style={{ textAlign: "right", marginBottom: "13px" }}>
-             <span className={`ui positive message compact tiny ${message ? "" : "hide"}`}>
-                <p>{"saved"}</p>
-              </span>
-              &emsp;
-          <button className="ui micro button basic orange" onClick={this.saveDraft}>
+          <span className={`ui positive message compact tiny ${message ? "" : "hide"}`}>
+            <p>{"saved"}</p>
+          </span>
+          &emsp;
+          <button className="ui micro button basic orange" onClick={this.onSaveDraft}>
             save draft
           </button>
           &emsp;
@@ -201,12 +215,11 @@ class Create extends React.Component {
   render() {
     const { title, draftHTML, editorState, preview } = this.state;
     const disable = this.canPublish() ? "" : "disabled";
-    console.log(this.state.slug, draftHTML);
     if (preview) {
       return (
         <ArticlePreview
           message={this.state.message}
-          onSaveDraft={this.saveDraft}
+          onSaveDraft={this.onSaveDraft}
           allowPublish={disable}
           onEdit={this.onEdit}
           draft={draftHTML}
@@ -224,16 +237,10 @@ class Create extends React.Component {
           {this.actionComponent(disable)}
           <form className="ui form">
             <div className="ui huge input fluid">
-              <input value={this.state.title}
-              className="bold" type={"text"}
-              placeholder="Title"
-              onChange={this.onTitleChange} />
+              <input value={this.state.title} className="bold" type={"text"} placeholder="Title" onChange={this.onTitleChange} />
             </div>
             <div className="ui segment">
-              <Editor ref={this.refsEditor}
-              editorState={editorState}
-              onChange={this.onEditorStateChange}
-              sideButtons={this.sideButtons()} />
+              <Editor ref={this.refsEditor} editorState={editorState} onChange={this.onEditorStateChange} sideButtons={this.sideButtons()} />
             </div>
           </form>
         </div>

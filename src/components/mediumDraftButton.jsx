@@ -25,18 +25,17 @@ class ImageButton extends React.Component {
       method: "POST",
       data: formdata
     };
-    const res = await request(payLoad, false);
-    const src = res.data.secure_url;
-    sessionStorage.setItem("imageURL", src);
-    const appendImage = addNewBlock(this.props.getEditorState(), Block.IMAGE, { src });
-
-    this.props.setEditorState(appendImage);
+    try {
+      const res = await request(payLoad, false);
+      const src = res.data.secure_url;
+      ImageButton.setImage(src);
+      const appendImage = addNewBlock(this.props.getEditorState(), Block.IMAGE, { src });
+      this.props.setEditorState(appendImage);
+    } catch (error) {
+      console.log(error.message);
+    }
     this.props.close();
   };
-
-componentWillUnmount() {
-  sessionStorage.removeItem("imageURL");
-}
 
   render() {
     return (
